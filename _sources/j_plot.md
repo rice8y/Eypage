@@ -2,7 +2,7 @@
 
 Julia でグラフを描画する方法は複数あるが, ここでは Plots を扱う.
 
-まずは, Plots をインストールする. 
+まずは, Plots をインストールする.
 
 ```Julia
 (@v1.9) pkg> add Plots
@@ -32,7 +32,7 @@ Pkg.add("Plots")
 PyPlot は非推奨となったため, PythonPlot に移行した方がよさそう.
 ```
 
-例として, 
+例として,
 $$
 \begin{equation*}
 y=\sin x,\quad 0\leq x\leq2\pi
@@ -42,31 +42,31 @@ $$
 
 | GR |
 | --- |
-|<img src="_images/gr.png" style="height:200px; width:auto;">|
+|![GR](_images/gr.png)|
 
 | PythonPlot |
 | --- |
-|<img src="_images/pythonplot.png" style="height:200px; width:auto;">|
+|![PythonPlot](_images/pythonplot.png)|
 
 | PlotlyJS |
 | --- |
-|<img src="_images/plotlyjs.svg" style="height:200px; width:auto;">|
+|![PlotlyJS](_images/plotlyjs.svg)|
 
 | PGFPlotsX |
 | --- |
-|<img src="_images/pgfplotsx.png" style="height:200px; width:auto;">|
+|![PGFPlotsX](_images/pgfplotsx.png)|
 
 | UnicodePlots |
 | --- |
-|<img src="_images/unicodeplots.png" style="height:200px; width:auto;">|
+|![UnicodePlots](_images/unicodeplots.png)|
 
 | InspectDR |
 | --- |
-|<img src="_images/inspectdr.png" style="height:200px; width:auto;">|
+|![InspectDR](_images/inspectdr.png)|
 
 | Gaston |
 | --- |
-|<img src="_images/gaston.png" style="height:200px; width:auto;">|
+|![Gaston](_images/gaston.png)|
 
 プロット時間は以下の通り. なお, 平均実行時間導出にあたり, 各バックエンドにおいてそれぞれ100回実行した.
 
@@ -81,4 +81,4 @@ $$
 | Gaston | 0.755034 | 0.000493 |
 
 総合的にみると, やはり GR が速い.
-なお, 本ページ以降では基本的に Plots + GR でグラフ描画を行う.
+なお, 本サイトでは基本的に Plots + GR でグラフ描画を行う.
