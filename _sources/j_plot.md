@@ -40,7 +40,7 @@ y=\sin x,\quad 0\leq x\leq2\pi
 \end{equation*}
 $$
 
-を各バックグラウンドで描画する.
+を各バックエンドで描画する.
 
 | GR |
 | --- |
