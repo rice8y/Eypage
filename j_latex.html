@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>忘備録 &#8212; Y&#39;s Page</title>
+    <title>PlotsでLaTeX表記 &#8212; Y&#39;s Page</title>
   
   
   
@@ -59,11 +59,12 @@
     <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
     <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
     <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
-    <script>DOCUMENTATION_OPTIONS.pagename = 'intro';</script>
-    <link rel="canonical" href="https://rice8y.github.io/Eypage/intro.html" />
+    <script>DOCUMENTATION_OPTIONS.pagename = 'j_latex';</script>
+    <link rel="canonical" href="https://rice8y.github.io/Eypage/j_latex.html" />
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="LaTeX" href="latex.html" />
+    <link rel="next" title="数値計算" href="j_sim.html" />
+    <link rel="prev" title="グラフの描画" href="j_plot.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
   </head>
@@ -126,8 +127,6 @@
       
       
       
-        
-      
       <div class="bd-sidebar-primary bd-sidebar">
         
 
@@ -144,7 +143,7 @@
 
   
 
-<a class="navbar-brand logo" href="#">
+<a class="navbar-brand logo" href="intro.html">
   
   
   
@@ -175,19 +174,19 @@
     <div class="bd-toc-item navbar-nav active">
         
         <ul class="nav bd-sidenav bd-sidenav__home-link">
-            <li class="toctree-l1 current active">
-                <a class="reference internal" href="#">
+            <li class="toctree-l1">
+                <a class="reference internal" href="intro.html">
                     忘備録
                 </a>
             </li>
         </ul>
-        <ul class="nav bd-sidenav">
+        <ul class="current nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="latex.html">LaTeX</a></li>
-<li class="toctree-l1 has-children"><a class="reference internal" href="julia.html">Julia</a><ul>
+<li class="toctree-l1 current active has-children"><a class="reference internal" href="julia.html">Julia</a><ul class="current">
 <li class="toctree-l2"><a class="reference internal" href="j_plot.html">グラフの描画</a></li>
-<li class="toctree-l2"><a class="reference internal" href="j_latex.html">PlotsでLaTeX表記</a></li>
+<li class="toctree-l2 current active"><a class="current reference internal" href="#">PlotsでLaTeX表記</a></li>
 <li class="toctree-l2"><a class="reference internal" href="j_sim.html">数値計算</a></li>
-</ul><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary>
+</ul><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary>
 </details></li>
 </ul>
 
@@ -260,7 +259,7 @@
       
       
       
-      <li><a href="https://github.com/rice8y/Eypage/edit/main/docs/intro.md" target="_blank"
+      <li><a href="https://github.com/rice8y/Eypage/edit/main/docs/j_latex.md" target="_blank"
    class="btn btn-sm btn-source-edit-button dropdown-item"
    title="Suggest edit"
    data-bs-placement="left" data-bs-toggle="tooltip"
@@ -290,7 +289,7 @@
       
       
       
-      <li><a href="_sources/intro.md" target="_blank"
+      <li><a href="_sources/j_latex.md" target="_blank"
    class="btn btn-sm btn-download-source-button dropdown-item"
    title="Download source file"
    data-bs-placement="left" data-bs-toggle="tooltip"
@@ -372,7 +371,7 @@ document.write(`
               
 
 <div id="jb-print-docs-body" class="onlyprint">
-    <h1>忘備録</h1>
+    <h1>PlotsでLaTeX表記</h1>
     <!-- Table of contents -->
     <div id="print-main-content">
         <div id="jb-print-toc">
@@ -386,11 +385,55 @@ document.write(`
 <div id="searchbox"></div>
                 <article class="bd-article">
                   
-  <section class="tex2jax_ignore mathjax_ignore" id="id1">
-<h1>忘備録<a class="headerlink" href="#id1" title="Link to this heading">#</a></h1>
-<p>この Web サイトは, 私が様々な言語を利用する上で困った事や役に立ったこと等を忘備録としてまとめたものである. そのため, 間違った表現や記述, コードが含まれる可能性があるが, その点についてはご理解願いたい.</p>
-<div class="toctree-wrapper compound">
+  <section class="tex2jax_ignore mathjax_ignore" id="plotslatex">
+<h1>PlotsでLaTeX表記<a class="headerlink" href="#plotslatex" title="Link to this heading">#</a></h1>
+<p>Plots で LaTeX 表記を使用したい場合, バックグラウンドとして PGFPlotsX を用いればよいが初期実行が遅い. そのため, ここでは GR を用いた LaTeX 表記について述べる.</p>
+<p>まず, LaTeXStrings をインストールする.</p>
+<div class="highlight-Julia notranslate"><div class="highlight"><pre><span></span><span class="p">(</span><span class="nd">@v1</span><span class="mf">.9</span><span class="p">)</span><span class="w"> </span><span class="n">pkg</span><span class="o">&gt;</span><span class="w"> </span><span class="n">add</span><span class="w"> </span><span class="n">LaTeXStrings</span>
+</pre></div>
 </div>
+<p>または,</p>
+<div class="highlight-Julia notranslate"><div class="highlight"><pre><span></span><span class="k">using</span><span class="w"> </span><span class="n">Pkg</span>
+<span class="n">Pkg</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="s">&quot;LaTeXStrings&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>例として, レイリー分布の確率密度関数
+$<span class="math notranslate nohighlight">\(
+\begin{equation*}
+f(x|\sigma)=\dfrac{x}{\sigma^{2}}e^{-\frac{x^{2}}{2\sigma^{2}}}
+\end{equation*}
+\)</span>$
+を描画する.</p>
+<p>まず, 必要なパッケージを読み込む.</p>
+<div class="highlight-Julia notranslate"><div class="highlight"><pre><span></span><span class="k">using</span><span class="w"> </span><span class="n">Plots</span><span class="p">,</span><span class="w"> </span><span class="n">LaTeXStrings</span>
+</pre></div>
+</div>
+<p>次に, レイリー分布の確率密度関数を定義する.</p>
+<div class="highlight-Julia notranslate"><div class="highlight"><pre><span></span><span class="k">function</span><span class="w"> </span><span class="n">f</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="w"> </span><span class="n">σ</span><span class="p">)</span>
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="n">x</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="n">σ</span><span class="o">^</span><span class="mi">2</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">exp</span><span class="p">(</span><span class="o">-</span><span class="n">x</span><span class="o">^</span><span class="mi">2</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="p">(</span><span class="mi">2</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">σ</span><span class="o">^</span><span class="mi">2</span><span class="p">))</span>
+<span class="k">end</span>
+</pre></div>
+</div>
+<p>今回は, <span class="math notranslate nohighlight">\(0\leq x\leq10\)</span> の範囲で描画する.</p>
+<div class="highlight-Julia notranslate"><div class="highlight"><pre><span></span><span class="n">x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="o">:</span><span class="mf">0.01</span><span class="o">:</span><span class="mi">10</span>
+
+<span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="w"> </span><span class="n">f</span><span class="o">.</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="w"> </span><span class="mf">0.5</span><span class="p">),</span><span class="w"> </span><span class="n">xlabel</span><span class="o">=</span><span class="sa">L</span><span class="s">&quot;x&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">ylabel</span><span class="o">=</span><span class="sa">L</span><span class="s">&quot;y&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">label</span><span class="o">=</span><span class="sa">L</span><span class="s">&quot;\sigma=0.5&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">title</span><span class="o">=</span><span class="s">&quot;Rayleigh distribution&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">dpi</span><span class="o">=</span><span class="mi">300</span><span class="p">)</span>
+<span class="n">plot!</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="w"> </span><span class="n">f</span><span class="o">.</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="w"> </span><span class="mf">1.0</span><span class="p">),</span><span class="w"> </span><span class="n">label</span><span class="o">=</span><span class="sa">L</span><span class="s">&quot;\sigma=1.0&quot;</span><span class="p">)</span>
+<span class="n">plot!</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="w"> </span><span class="n">f</span><span class="o">.</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="w"> </span><span class="mf">2.0</span><span class="p">),</span><span class="w"> </span><span class="n">label</span><span class="o">=</span><span class="sa">L</span><span class="s">&quot;\sigma=2.0&quot;</span><span class="p">)</span>
+<span class="n">plot!</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="w"> </span><span class="n">f</span><span class="o">.</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="w"> </span><span class="mf">3.0</span><span class="p">),</span><span class="w"> </span><span class="n">label</span><span class="o">=</span><span class="sa">L</span><span class="s">&quot;\sigma=3.0&quot;</span><span class="p">)</span>
+<span class="n">plot!</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="w"> </span><span class="n">f</span><span class="o">.</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="w"> </span><span class="mf">4.0</span><span class="p">),</span><span class="w"> </span><span class="n">label</span><span class="o">=</span><span class="sa">L</span><span class="s">&quot;\sigma=4.0&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>LaTeXStrings では, <code class="docutils literal notranslate"><span class="pre">L&quot;&quot;</span></code> でLaTeX形式の文字列を記述する. 実際に描画した結果を以下に示す.</p>
+<p><img alt="Rayleigh" src="_images/ray01.png" /></p>
+<p>このままでは, タイトルと軸ラベルにLaTeX表記が適用されていない. タイトルにも同様にして, <code class="docutils literal notranslate"><span class="pre">title=L&quot;&quot;</span></code> とすれば良いが, <code class="docutils literal notranslate"><span class="pre">\mathrm{}</span></code> で数式内の文字を立体にしたり, <code class="docutils literal notranslate"><span class="pre">\,</span></code> や <code class="docutils literal notranslate"><span class="pre">\quad</span></code> で空白を認識させなければならないため面倒である. そこで, LaTeX で標準的に使用されている Computer Modern フォントを利用する. 具体的には以下のようにする.</p>
+<div class="highlight-Julia notranslate"><div class="highlight"><pre><span></span><span class="n">plot_font</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;Computer Modern&quot;</span>
+<span class="n">default</span><span class="p">(</span><span class="n">fontfamily</span><span class="o">=</span><span class="n">plot_font</span><span class="p">,</span><span class="w"> </span><span class="n">linewidth</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="n">label</span><span class="o">=</span><span class="nb">nothing</span><span class="p">,</span><span class="w"> </span><span class="n">grid</span><span class="o">=</span><span class="nb">true</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>上記のコードでは, <code class="docutils literal notranslate"><span class="pre">plot_font</span></code> で Computer Modern を指定し, <code class="docutils literal notranslate"><span class="pre">default()</span></code> で描画のデフォルト設定を変更している. Computer Modern を使用すると以下のようになる.</p>
+<p><img alt="Reyleigh_cm" src="_images/ray02.png" /></p>
+<p>美しい.</p>
 </section>
 
     <script type="text/x-thebe-config">
@@ -423,12 +466,21 @@ document.write(`
                 <footer class="prev-next-footer d-print-none">
                   
 <div class="prev-next-area">
+    <a class="left-prev"
+       href="j_plot.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">グラフの描画</p>
+      </div>
+    </a>
     <a class="right-next"
-       href="latex.html"
+       href="j_sim.html"
        title="next page">
       <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title">LaTeX</p>
+        <p class="prev-next-title">数値計算</p>
       </div>
       <i class="fa-solid fa-angle-right"></i>
     </a>
