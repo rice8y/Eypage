@@ -42,31 +42,31 @@ $$
 
 | GR |
 | --- |
-|<img src="images/gr.png" style="height:200px; width:auto;">|
+|<img src="_images/gr.png" style="height:200px; width:auto;">|
 
 | PythonPlot |
 | --- |
-|<img src="images/pythonplot.png" style="height:200px; width:auto;">|
+|<img src="_images/pythonplot.png" style="height:200px; width:auto;">|
 
 | PlotlyJS |
 | --- |
-|<img src="images/plotlyjs.svg" style="height:200px; width:auto;">|
+|<img src="_images/plotlyjs.svg" style="height:200px; width:auto;">|
 
 | PGFPlotsX |
 | --- |
-|<img src="images/pgfplotsx.png" style="height:200px; width:auto;">|
+|<img src="_images/pgfplotsx.png" style="height:200px; width:auto;">|
 
 | UnicodePlots |
 | --- |
-|<img src="images/unicodeplots.png" style="height:200px; width:auto;">|
+|<img src="_images/unicodeplots.png" style="height:200px; width:auto;">|
 
 | InspectDR |
 | --- |
-|<img src="images/inspectdr.png" style="height:200px; width:auto;">|
+|<img src="_images/inspectdr.png" style="height:200px; width:auto;">|
 
 | Gaston |
 | --- |
-|<img src="images/gaston.png" style="height:200px; width:auto;">|
+|<img src="_images/gaston.png" style="height:200px; width:auto;">|
 
 プロット時間は以下の通り.
 
