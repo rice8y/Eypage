@@ -33,11 +33,13 @@ PyPlot は非推奨となったため, PythonPlot に移行した方がよさそ
 ```
 
 例として,
+
 $$
 \begin{equation*}
 y=\sin x,\quad 0\leq x\leq2\pi
 \end{equation*}
 $$
+
 を各バックグラウンドで描画する.
 
 | GR |
