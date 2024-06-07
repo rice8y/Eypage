@@ -16,11 +16,13 @@ Pkg.add("LaTeXStrings")
 ```
 
 例として, レイリー分布の確率密度関数
+
 $$
 \begin{equation*}
 f(x|\sigma)=\dfrac{x}{\sigma^{2}}e^{-\frac{x^{2}}{2\sigma^{2}}}
 \end{equation*}
 $$
+
 を描画する.
 
 まず, 必要なパッケージを読み込む.
