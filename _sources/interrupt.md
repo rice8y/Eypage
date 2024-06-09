@@ -7,7 +7,7 @@ VScode で Julia の実行を中断するコマンドとして, Julia 拡張機�
 |Ctrl+C|ターミナルにフォーカスがあり, かつ, REPLがアクティブであり, かつ, Julia が評価処理を行っているとき|
 |Ctrl+Shift+C|Julia が評価処理を行っているとき|
 
-なお, これらについては Julia-VScode の [`settings.json`](https://github.com/julia-vscode/julia-vscode/blob/main/package.json) に記述されている. `settings.json` から `language-julia.interrupt` に関する部分を抜粋して以下に示す.
+なお, これらについては Julia-VScode の [`package.json`](https://github.com/julia-vscode/julia-vscode/blob/main/package.json) に記述されている. `package.json` から `language-julia.interrupt` に関する部分を抜粋して以下に示す.
 
 ```json
 {
@@ -28,4 +28,4 @@ VScode で Julia の実行を中断するコマンドとして, Julia 拡張機�
 },
 ```
 
-Julia-VScode が提供する他の機能についても [`settings.json`](https://github.com/julia-vscode/julia-vscode/blob/main/package.json) に記述されているため, 時間があるときに覗いてみたい. (多分覗くことはない...)
+Julia-VScode が提供する他の機能についても [`package.json`](https://github.com/julia-vscode/julia-vscode/blob/main/package.json) に記述されているため, 時間があるときに覗いてみたい. (多分覗くことはない...)
