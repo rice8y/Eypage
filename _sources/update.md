@@ -10,5 +10,5 @@ Pkg.update()
 または,
 
 ```Julia
-(@v1.9) pkg> update()
+(@v1.9) pkg> update
 ```
