@@ -2,7 +2,7 @@
 
 ## インストール
 
-[公式ドキュメント](https://julialang.org/downloads/)に従い, Julia をインストールする. 
+[公式ドキュメント](https://julialang.org/downloads/)に従い, Julia をインストールする.
 
 Julia の使い方は, インタラクティブ・セッション (Read-Eval-Print Loop, REPL)とスクリプトの2つに大別される. 本サイトでは, 基本的にスクリプトを使用する.
 
@@ -83,6 +83,6 @@ x64
 
 ### 総括
 
-> OS: Windows 11 Pro
-> Julia: Version 1.9.0
-> VScode: Version 1.89.1
+> OS: Windows 11 Pro  
+> Julia: Version 1.9.0  
+> VScode: Version 1.89.1  
