@@ -191,6 +191,10 @@
 <li class="toctree-l2"><a class="reference internal" href="j_sim.html">数値計算</a></li>
 </ul><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary>
 </details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="sp_intro.html">おまけ</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="interrupt.html">実行の中断</a></li>
+</ul><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary>
+</details></li>
 </ul>
 
     </div>
@@ -386,7 +390,19 @@ document.write(`
             </div>
             <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">環境</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">インストール</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#julia-in-vscode">Julia in VScode</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">1. Julia の拡張機能インストール</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id3">2. パス設定</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#julia-executablepath">julia.executablePath</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#julia-symbolcachedownload">julia.symbolCacheDownload</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#julia-enablecrashreporter-julia-enabletelemetry">julia.enableCrashReporter, julia.enableTelemetry</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id4">環境</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id5">総括</a></li>
+</ul>
+</li>
 </ul>
             </nav>
         </div>
@@ -400,27 +416,85 @@ document.write(`
                   
   <section class="tex2jax_ignore mathjax_ignore" id="julia">
 <h1>Julia の導入<a class="headerlink" href="#julia" title="Link to this heading">#</a></h1>
-<p>ここには, Julia に関する忘備録を示す.</p>
 <section id="id1">
-<h2>環境<a class="headerlink" href="#id1" title="Link to this heading">#</a></h2>
-<div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="n">julia</span><span class="o">&gt;</span><span class="w"> </span><span class="k">using</span><span class="w"> </span><span class="n">InteractiveUtils</span>
+<h2>インストール<a class="headerlink" href="#id1" title="Link to this heading">#</a></h2>
+<p><a class="reference external" href="https://julialang.org/downloads/">公式ドキュメント</a>に従い, Julia をインストールする.</p>
+<p>Julia の使い方は, インタラクティブ・セッション (Read-Eval-Print Loop, REPL)とスクリプトの2つに大別される. 本サイトでは, 基本的にスクリプトを使用する.</p>
+</section>
+<section id="julia-in-vscode">
+<h2>Julia in VScode<a class="headerlink" href="#julia-in-vscode" title="Link to this heading">#</a></h2>
+<p>また, 本サイトでは, Visual Studio Code (以降, VScode) で Julia を実行する. 以下に, VScode における Julia の導入について示す. なお, VScode のインストールについては省略する.</p>
+<section id="id2">
+<h3>1. Julia の拡張機能インストール<a class="headerlink" href="#id2" title="Link to this heading">#</a></h3>
+<p>まず, VScode の拡張機能から Julia (拡張機能ID: julialang.language-julia) を選択し, インストールする. なお, 以降ではこの拡張機能を Julia-VScode と称する.</p>
+</section>
+<section id="id3">
+<h3>2. パス設定<a class="headerlink" href="#id3" title="Link to this heading">#</a></h3>
+<p>次に, ローカルにインストールした Julia のパスを VScode に通す.</p>
+<p>settings.json に以下の記述を追加する.</p>
+<div class="highlight-json notranslate"><div class="highlight"><pre><span></span><span class="nt">&quot;julia.executablePath&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;\\Users\\yoneyama\\AppData\\Local\\Programs\\Julia-1.9.0\\bin\\julia.exe&quot;</span>
+</pre></div>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>上記には, 例として私のパスを示したが, 実際には自身のコンピュータにおける Julia のパスを指定する必要がある.</p>
+</div>
+<p>参考までに, 私の設定を以下に示す.</p>
+<div class="highlight-json notranslate"><div class="highlight"><pre><span></span><span class="nt">&quot;julia.executablePath&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;\\Users\\yoneyama\\AppData\\Local\\Programs\\Julia-1.9.0\\bin\\julia.exe&quot;</span><span class="p">,</span>
+<span class="nt">&quot;julia.symbolCacheDownload&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span>
+<span class="nt">&quot;julia.enableCrashReporter&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span>
+<span class="nt">&quot;julia.enableTelemetry&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span>
+</pre></div>
+</div>
+</section>
+<section id="julia-executablepath">
+<h3>julia.executablePath<a class="headerlink" href="#julia-executablepath" title="Link to this heading">#</a></h3>
+<p><code class="docutils literal notranslate"><span class="pre">julia.executablePath</span></code> は, 先ほど説明した実行ファイルのパスを指定するためのものである.</p>
+</section>
+<section id="julia-symbolcachedownload">
+<h3>julia.symbolCacheDownload<a class="headerlink" href="#julia-symbolcachedownload" title="Link to this heading">#</a></h3>
+<p><code class="docutils literal notranslate"><span class="pre">julia.symbolCacheDownload</span></code> は, シンボルサーバキャッシュファイルをGitHub からダウンロードし, ローカルに保存するための設定である. デフォルトは <code class="docutils literal notranslate"><span class="pre">null</span></code> で, <code class="docutils literal notranslate"><span class="pre">true</span></code> にするとキャッシュファイルをダウンロードでき, <code class="docutils literal notranslate"><span class="pre">false</span></code> でダウンロードを無効化できる.</p>
+</section>
+<section id="julia-enablecrashreporter-julia-enabletelemetry">
+<h3>julia.enableCrashReporter, julia.enableTelemetry<a class="headerlink" href="#julia-enablecrashreporter-julia-enabletelemetry" title="Link to this heading">#</a></h3>
+<p><code class="docutils literal notranslate"><span class="pre">julia.enableCrashReporter</span></code>, <code class="docutils literal notranslate"><span class="pre">julia.enableTelemetry</span></code> は, Julia-VScode が機能改善のために行っているユーザの使用状況データ・クラッシュレポートの収集及び開発チームへのデータ送信に関する設定である.  両者ともに, <code class="docutils literal notranslate"><span class="pre">true</span></code> にするとデータ収集・送信を有効化でき, <code class="docutils literal notranslate"><span class="pre">false</span></code> にするとデータ収集・送信を無効化できる. なお, デフォルトでは両者とも <code class="docutils literal notranslate"><span class="pre">null</span></code> となっており, この状態ではデータ収集・送信は行われないが, UI がユーザに対してデータ収集・送信の同意を求めてくる. 環境構築時, 何を思って無効化したのか覚えていないがこのままにしておく. 基本的には <code class="docutils literal notranslate"><span class="pre">true</span></code> で良いと思う. 詳細は Julia-VScode の<a class="reference external" href="https://github.com/julia-vscode/julia-vscode/wiki/Privacy-Policy">プライバシーポリシー</a>を参照されたい.</p>
+<p>なお, Julia-VScode では, ここで述べた機能の他にも数多くの機能を提供している. 詳細は Julia-VScode の<a class="reference external" href="https://www.julia-vscode.org/docs/v1.3/">公式ドキュメント</a>や <a class="reference external" href="https://github.com/julia-vscode/julia-vscode/blob/main/package.json">settings.json</a> を参照されたい.</p>
+</section>
+</section>
+<section id="id4">
+<h2>環境<a class="headerlink" href="#id4" title="Link to this heading">#</a></h2>
+<p>Julia のバージョンは以下の通り.</p>
+<div class="highlight-Julia notranslate"><div class="highlight"><pre><span></span><span class="n">julia</span><span class="o">&gt;</span><span class="w"> </span><span class="k">using</span><span class="w"> </span><span class="n">InteractiveUtils</span>
 <span class="n">julia</span><span class="o">&gt;</span><span class="w"> </span><span class="n">versioninfo</span><span class="p">()</span>
+<span class="n">Julia</span><span class="w"> </span><span class="n">Version</span><span class="w"> </span><span class="mf">1.9.0</span>
+<span class="n">Commit</span><span class="w"> </span><span class="mf">8e63055292</span><span class="w"> </span><span class="p">(</span><span class="mi">2023</span><span class="o">-</span><span class="mi">05</span><span class="o">-</span><span class="mi">07</span><span class="w"> </span><span class="mi">11</span><span class="o">:</span><span class="mi">25</span><span class="w"> </span><span class="n">UTC</span><span class="p">)</span>
+<span class="n">Platform</span><span class="w"> </span><span class="n">Info</span><span class="o">:</span>
+<span class="w">  </span><span class="n">OS</span><span class="o">:</span><span class="w"> </span><span class="n">Windows</span><span class="w"> </span><span class="p">(</span><span class="n">x86_64</span><span class="o">-</span><span class="n">w64</span><span class="o">-</span><span class="n">mingw32</span><span class="p">)</span>
+<span class="w">  </span><span class="n">CPU</span><span class="o">:</span><span class="w"> </span><span class="mi">8</span><span class="w"> </span><span class="o">×</span><span class="w"> </span><span class="mi">11</span><span class="n">th</span><span class="w"> </span><span class="n">Gen</span><span class="w"> </span><span class="n">Intel</span><span class="p">(</span><span class="n">R</span><span class="p">)</span><span class="w"> </span><span class="n">Core</span><span class="p">(</span><span class="n">TM</span><span class="p">)</span><span class="w"> </span><span class="n">i5</span><span class="o">-</span><span class="mi">1155</span><span class="n">G7</span><span class="w"> </span><span class="err">@</span><span class="w"> </span><span class="mf">2.50</span><span class="n">GHz</span>
+<span class="w">  </span><span class="n">WORD_SIZE</span><span class="o">:</span><span class="w"> </span><span class="mi">64</span>
+<span class="w">  </span><span class="n">LIBM</span><span class="o">:</span><span class="w"> </span><span class="n">libopenlibm</span>
+<span class="w">  </span><span class="n">LLVM</span><span class="o">:</span><span class="w"> </span><span class="n">libLLVM</span><span class="o">-</span><span class="mf">14.0.6</span><span class="w"> </span><span class="p">(</span><span class="n">ORCJIT</span><span class="p">,</span><span class="w"> </span><span class="n">tigerlake</span><span class="p">)</span>
+<span class="w">  </span><span class="n">Threads</span><span class="o">:</span><span class="w"> </span><span class="mi">1</span><span class="w"> </span><span class="n">on</span><span class="w"> </span><span class="mi">8</span><span class="w"> </span><span class="n">virtual</span><span class="w"> </span><span class="n">cores</span>
+<span class="n">Environment</span><span class="o">:</span>
+<span class="w">  </span><span class="n">JULIA_EDITOR</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">code</span>
+<span class="w">  </span><span class="n">JULIA_NUM_THREADS</span><span class="w"> </span><span class="o">=</span>
 </pre></div>
 </div>
-<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>Julia Version 1.9.0
-Commit 8e63055292 (2023-05-07 11:25 UTC)
-Platform Info:
-  OS: Windows (x86_64-w64-mingw32)
-  CPU: 8 × 11th Gen Intel(R) Core(TM) i5-1155G7 @ 2.50GHz
-  WORD_SIZE: 64
-  LIBM: libopenlibm
-  LLVM: libLLVM-14.0.6 (ORCJIT, tigerlake)
-  Threads: 1 on 8 virtual cores
-Environment:
-  JULIA_EDITOR = code
-  JULIA_NUM_THREADS =
+<p>また, VScode のバージョンは以下の通り.</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>&gt;<span class="w"> </span>code<span class="w"> </span>--version
+<span class="m">1</span>.89.1
+dc96b837cf6bb4af9cd736aa3af08cf8279f7685
+x64
 </pre></div>
 </div>
+<section id="id5">
+<h3>総括<a class="headerlink" href="#id5" title="Link to this heading">#</a></h3>
+<blockquote>
+<div><p>OS: Windows 11 Pro
+Julia: Version 1.9.0
+VScode: Version 1.89.1</p>
+</div></blockquote>
+</section>
 </section>
 </section>
 
@@ -488,7 +562,19 @@ Environment:
   </div>
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">環境</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">インストール</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#julia-in-vscode">Julia in VScode</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">1. Julia の拡張機能インストール</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id3">2. パス設定</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#julia-executablepath">julia.executablePath</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#julia-symbolcachedownload">julia.symbolCacheDownload</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#julia-enablecrashreporter-julia-enabletelemetry">julia.enableCrashReporter, julia.enableTelemetry</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id4">環境</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id5">総括</a></li>
+</ul>
+</li>
 </ul>
   </nav></div>
 
