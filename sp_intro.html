@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>Julia 忘備録 &#8212; Y&#39;s Page</title>
+    <title>&lt;no title&gt; &#8212; Y&#39;s Page</title>
   
   
   
@@ -58,14 +58,13 @@
     <script async="async" src="_static/sphinx-thebe.js?v=c100c467"></script>
     <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
     <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
-    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
-    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
-    <script>DOCUMENTATION_OPTIONS.pagename = 'intro';</script>
-    <link rel="canonical" href="https://rice8y.github.io/Eypage/intro.html" />
+    <script>DOCUMENTATION_OPTIONS.pagename = 'sp_intro';</script>
+    <link rel="canonical" href="https://rice8y.github.io/Eypage/sp_intro.html" />
     <link rel="icon" href="_static/icon.png"/>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="Julia の導入" href="j_intro.html" />
+    <link rel="next" title="実行の中断" href="interrupt.html" />
+    <link rel="prev" title="数値計算" href="j_sim.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="unknown"/>
   </head>
@@ -128,8 +127,6 @@
       
       
       
-        
-      
       <div class="bd-sidebar-primary bd-sidebar">
         
 
@@ -146,7 +143,7 @@
 
   
 
-<a class="navbar-brand logo" href="#">
+<a class="navbar-brand logo" href="intro.html">
   
   
   
@@ -177,8 +174,8 @@
     <div class="bd-toc-item navbar-nav active">
         
         <ul class="nav bd-sidenav bd-sidenav__home-link">
-            <li class="toctree-l1 current active">
-                <a class="reference internal" href="#">
+            <li class="toctree-l1">
+                <a class="reference internal" href="intro.html">
                     Julia 忘備録
                 </a>
             </li>
@@ -266,7 +263,7 @@
       
       
       
-      <li><a href="https://github.com/rice8y/Eypage/edit/main/docs/intro.md" target="_blank"
+      <li><a href="https://github.com/rice8y/Eypage/edit/main/docs/sp_intro.md" target="_blank"
    class="btn btn-sm btn-source-edit-button dropdown-item"
    title="Suggest edit"
    data-bs-placement="left" data-bs-toggle="tooltip"
@@ -296,7 +293,7 @@
       
       
       
-      <li><a href="_sources/intro.md" target="_blank"
+      <li><a href="_sources/sp_intro.md" target="_blank"
    class="btn btn-sm btn-download-source-button dropdown-item"
    title="Download source file"
    data-bs-placement="left" data-bs-toggle="tooltip"
@@ -367,7 +364,9 @@ document.write(`
   </button>
 `);
 </script>
-
+<label class="sidebar-toggle secondary-toggle btn btn-sm" for="__secondary"title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</label>
 </div></div>
       
     </div>
@@ -378,7 +377,7 @@ document.write(`
               
 
 <div id="jb-print-docs-body" class="onlyprint">
-    <h1>Julia 忘備録</h1>
+    <h1><no title></h1>
     <!-- Table of contents -->
     <div id="print-main-content">
         <div id="jb-print-toc">
@@ -392,12 +391,8 @@ document.write(`
 <div id="searchbox"></div>
                 <article class="bd-article">
                   
-  <section class="tex2jax_ignore mathjax_ignore" id="julia">
-<h1>Julia 忘備録<a class="headerlink" href="#julia" title="Link to this heading">#</a></h1>
-<p>この Web サイトは, Julia を利用する上で困った事や役に立ったこと等を忘備録としてまとめたものである. そのため, 間違った表現や記述, コードが含まれる可能性があるが, その点についてはご理解願いたい.</p>
-<div class="toctree-wrapper compound">
+  <div class="toctree-wrapper compound">
 </div>
-</section>
 
     <script type="text/x-thebe-config">
     {
@@ -429,12 +424,21 @@ document.write(`
                 <footer class="prev-next-footer d-print-none">
                   
 <div class="prev-next-area">
+    <a class="left-prev"
+       href="j_sim.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">数値計算</p>
+      </div>
+    </a>
     <a class="right-next"
-       href="j_intro.html"
+       href="interrupt.html"
        title="next page">
       <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title">Julia の導入</p>
+        <p class="prev-next-title">実行の中断</p>
       </div>
       <i class="fa-solid fa-angle-right"></i>
     </a>
