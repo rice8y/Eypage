@@ -18,7 +18,7 @@ Julia の使い方は, インタラクティブ・セッション (Read-Eval-Pri
 
 次に, ローカルにインストールした Julia のパスを VScode に通す.
 
-settings.json に以下の記述を追加する.
+`settings.json` に以下の記述を追加する.
 
 ```json
 "julia.executablePath": "\\Users\\yoneyama\\AppData\\Local\\Programs\\Julia-1.9.0\\bin\\julia.exe"
