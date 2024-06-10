@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>変数 &#8212; Y&#39;s Page</title>
+    <title>型 &#8212; Y&#39;s Page</title>
   
   
   
@@ -58,13 +58,13 @@
     <script async="async" src="_static/sphinx-thebe.js?v=c100c467"></script>
     <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
     <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
-    <script>DOCUMENTATION_OPTIONS.pagename = 'j_basic_v';</script>
-    <link rel="canonical" href="https://rice8y.github.io/Eypage/j_basic_v.html" />
+    <script>DOCUMENTATION_OPTIONS.pagename = 'j_basic_td';</script>
+    <link rel="canonical" href="https://rice8y.github.io/Eypage/j_basic_td.html" />
     <link rel="icon" href="_static/icon.png"/>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="整数と浮動小数点" href="j_basic_if.html" />
-    <link rel="prev" title="Julia の基礎" href="j_basic_intro.html" />
+    <link rel="next" title="グラフ描画" href="j_plot_intro.html" />
+    <link rel="prev" title="整数と浮動小数点" href="j_basic_if.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="unknown"/>
   </head>
@@ -183,9 +183,9 @@
         <ul class="current nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="j_intro.html">Julia の導入</a></li>
 <li class="toctree-l1 current active has-children"><a class="reference internal" href="j_basic_intro.html">Julia の基礎</a><ul class="current">
-<li class="toctree-l2 current active"><a class="current reference internal" href="#">変数</a></li>
+<li class="toctree-l2"><a class="reference internal" href="j_basic_v.html">変数</a></li>
 <li class="toctree-l2"><a class="reference internal" href="j_basic_if.html">整数と浮動小数点</a></li>
-<li class="toctree-l2"><a class="reference internal" href="j_basic_td.html">型</a></li>
+<li class="toctree-l2 current active"><a class="current reference internal" href="#">型</a></li>
 </ul><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary>
 </details></li>
 <li class="toctree-l1 has-children"><a class="reference internal" href="j_plot_intro.html">グラフ描画</a><ul>
@@ -273,7 +273,7 @@
       
       
       
-      <li><a href="https://github.com/rice8y/Eypage/edit/main/docs/j_basic_v.md" target="_blank"
+      <li><a href="https://github.com/rice8y/Eypage/edit/main/docs/j_basic_td.md" target="_blank"
    class="btn btn-sm btn-source-edit-button dropdown-item"
    title="Suggest edit"
    data-bs-placement="left" data-bs-toggle="tooltip"
@@ -303,7 +303,7 @@
       
       
       
-      <li><a href="_sources/j_basic_v.md" target="_blank"
+      <li><a href="_sources/j_basic_td.md" target="_blank"
    class="btn btn-sm btn-download-source-button dropdown-item"
    title="Download source file"
    data-bs-placement="left" data-bs-toggle="tooltip"
@@ -374,7 +374,9 @@ document.write(`
   </button>
 `);
 </script>
-
+<label class="sidebar-toggle secondary-toggle btn btn-sm" for="__secondary"title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</label>
 </div></div>
       
     </div>
@@ -385,11 +387,19 @@ document.write(`
               
 
 <div id="jb-print-docs-body" class="onlyprint">
-    <h1>変数</h1>
+    <h1>型</h1>
     <!-- Table of contents -->
     <div id="print-main-content">
         <div id="jb-print-toc">
             
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">型宣言</a></li>
+</ul>
+            </nav>
         </div>
     </div>
 </div>
@@ -400,66 +410,37 @@ document.write(`
                 <article class="bd-article">
                   
   <section class="tex2jax_ignore mathjax_ignore" id="id1">
-<h1>変数<a class="headerlink" href="#id1" title="Link to this heading">#</a></h1>
-<p>Julia の型システムは, 動的型付けであるため型の宣言は不要である.</p>
-<div class="highlight-Julia notranslate"><div class="highlight"><pre><span></span><span class="n">julia</span><span class="o">&gt;</span><span class="w"> </span><span class="n">x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">10</span>
-<span class="mi">10</span>
-
-<span class="n">julia</span><span class="o">&gt;</span><span class="w"> </span><span class="n">typeof</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
-<span class="kt">Int64</span>
-
-<span class="n">julia</span><span class="o">&gt;</span><span class="w"> </span><span class="n">y</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;abcdefg&quot;</span>
-<span class="s">&quot;abcdefg&quot;</span>
-
-<span class="n">julia</span><span class="o">&gt;</span><span class="w"> </span><span class="n">typeof</span><span class="p">(</span><span class="n">y</span><span class="p">)</span>
-<span class="kt">String</span>
-</pre></div>
-</div>
-<p>REPL や VScode では, <code class="docutils literal notranslate"><span class="pre">\+LaTeXのシンボル名+Tab</span></code> で LaTeX のシンボル名を Unicode の数学記号に自動補完してくれる.</p>
-<p><img alt="Gamma" src="_images/gamma.gif" /></p>
-<p>なお, Juliaでは明示的に型宣言を行うこともできる. 型宣言には <code class="docutils literal notranslate"><span class="pre">::</span></code> 演算子を用いる. 詳しくは<a class="reference internal" href="#j_basic_td.nd"><span class="xref myst">型</span></a>に示す.</p>
-<div class="highlight-Julia notranslate"><div class="highlight"><pre><span></span><span class="n">julia</span><span class="o">&gt;</span><span class="w"> </span><span class="n">x</span><span class="o">::</span><span class="kt">Int64</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">1</span>
-<span class="mi">1</span>
-
-<span class="n">julia</span><span class="o">&gt;</span><span class="w"> </span><span class="n">typeof</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
-<span class="kt">Int64</span>
-</pre></div>
-</div>
-<p>また, 組み込みの定数や関数を再定義することもできる. (組み込みの予約語の再定義はできない. )</p>
-<div class="highlight-Julia notranslate"><div class="highlight"><pre><span></span><span class="n">julia</span><span class="o">&gt;</span><span class="w"> </span><span class="nb">pi</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">3</span>
-<span class="mi">3</span>
-
-<span class="n">julia</span><span class="o">&gt;</span><span class="w"> </span><span class="nb">pi</span>
-<span class="mi">3</span>
-
-<span class="n">julia</span><span class="o">&gt;</span><span class="w"> </span><span class="n">sqrt</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">4</span>
-<span class="mi">4</span>
-
-<span class="n">julia</span><span class="o">&gt;</span><span class="w"> </span><span class="n">sqrt</span>
-<span class="mi">4</span>
-</pre></div>
-</div>
-<p>しかし, 組み込みの定義や関数を再定義する前に既に利用している場合は, 再定義しようとするエラーが発生する.</p>
-<div class="highlight-Julia notranslate"><div class="highlight"><pre><span></span><span class="n">julia</span><span class="o">&gt;</span><span class="w"> </span><span class="nb">pi</span>
-<span class="nb">π</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">3.1415926535897</span><span class="o">...</span>
-
-<span class="n">julia</span><span class="o">&gt;</span><span class="w"> </span><span class="nb">pi</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">3</span>
-<span class="n">ERROR</span><span class="o">:</span><span class="w"> </span><span class="n">cannot</span><span class="w"> </span><span class="n">assign</span><span class="w"> </span><span class="n">a</span><span class="w"> </span><span class="n">value</span><span class="w"> </span><span class="n">to</span><span class="w"> </span><span class="n">imported</span><span class="w"> </span><span class="n">variable</span><span class="w"> </span><span class="n">MathConstants</span><span class="o">.</span><span class="nb">pi</span><span class="w"> </span><span class="n">from</span><span class="w"> </span><span class="k">module</span><span class="w"> </span><span class="n">Main</span>
+<h1>型<a class="headerlink" href="#id1" title="Link to this heading">#</a></h1>
+<p>Julia の型システムは動的型付けであるが, 明示的に型宣言を行うことができる.</p>
+<section id="id2">
+<h2>型宣言<a class="headerlink" href="#id2" title="Link to this heading">#</a></h2>
+<p>型宣言は <code class="docutils literal notranslate"><span class="pre">::</span></code> 演算子を用いて行う. <code class="docutils literal notranslate"><span class="pre">::</span></code> は, 数値や式の左側に配置する. 右側の型が具象型の場合, 左側の値はその具象型, 右側の型が抽象型の場合, 左側の値はその抽象型のサブタイプである必要がある.</p>
+<div class="highlight-Julia notranslate"><div class="highlight"><pre><span></span><span class="n">julia</span><span class="o">&gt;</span><span class="w"> </span><span class="p">(</span><span class="mi">1</span><span class="o">+</span><span class="mi">2</span><span class="p">)</span><span class="o">::</span><span class="kt">AbstractFloat</span>
+<span class="n">ERROR</span><span class="o">:</span><span class="w"> </span><span class="kt">TypeError</span><span class="o">:</span><span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="n">typeassert</span><span class="p">,</span><span class="w"> </span><span class="n">expected</span><span class="w"> </span><span class="kt">AbstractFloat</span><span class="p">,</span><span class="w"> </span><span class="n">got</span><span class="w"> </span><span class="n">a</span><span class="w"> </span><span class="n">value</span><span class="w"> </span><span class="n">of</span><span class="w"> </span><span class="n">type</span><span class="w"> </span><span class="kt">Int64</span>
 <span class="n">Stacktrace</span><span class="o">:</span>
 <span class="w"> </span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="w"> </span><span class="n">top</span><span class="o">-</span><span class="n">level</span><span class="w"> </span><span class="n">scope</span>
-<span class="w">   </span><span class="err">@</span><span class="w"> </span><span class="n">REPL</span><span class="p">[</span><span class="mi">6</span><span class="p">]</span><span class="o">:</span><span class="mi">1</span>
+<span class="w">   </span><span class="err">@</span><span class="w"> </span><span class="n">REPL</span><span class="p">[</span><span class="mi">19</span><span class="p">]</span><span class="o">:</span><span class="mi">1</span>
 
-<span class="n">julia</span><span class="o">&gt;</span><span class="w"> </span><span class="n">sqrt</span><span class="p">(</span><span class="mi">100</span><span class="p">)</span>
-<span class="mf">10.0</span>
+<span class="n">julia</span><span class="o">&gt;</span><span class="w"> </span><span class="p">(</span><span class="mi">1</span><span class="o">+</span><span class="mi">2</span><span class="p">)</span><span class="o">::</span><span class="kt">Int</span>
+<span class="mi">3</span>
 
-<span class="n">julia</span><span class="o">&gt;</span><span class="w"> </span><span class="n">sqrt</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">4</span>
-<span class="n">ERROR</span><span class="o">:</span><span class="w"> </span><span class="n">cannot</span><span class="w"> </span><span class="n">assign</span><span class="w"> </span><span class="n">a</span><span class="w"> </span><span class="n">value</span><span class="w"> </span><span class="n">to</span><span class="w"> </span><span class="n">imported</span><span class="w"> </span><span class="n">variable</span><span class="w"> </span><span class="n">Base</span><span class="o">.</span><span class="n">sqrt</span><span class="w"> </span><span class="n">from</span><span class="w"> </span><span class="k">module</span><span class="w"> </span><span class="n">Main</span>
+<span class="n">julia</span><span class="o">&gt;</span><span class="w"> </span><span class="k">abstract</span><span class="w"> </span><span class="k">type</span> <span class="kt">Real</span><span class="w"> </span><span class="k">end</span>
+
+<span class="n">julia</span><span class="o">&gt;</span><span class="w"> </span><span class="k">struct</span> <span class="kt">Integer</span><span class="w"> </span><span class="o">&lt;:</span><span class="w"> </span><span class="kt">Real</span>
+<span class="w">         </span><span class="n">x</span><span class="o">::</span><span class="kt">Int</span>
+<span class="w">       </span><span class="k">end</span>
+
+<span class="n">julia</span><span class="o">&gt;</span><span class="w"> </span><span class="kt">Integer</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span><span class="o">::</span><span class="kt">Int</span>
+<span class="n">ERROR</span><span class="o">:</span><span class="w"> </span><span class="kt">TypeError</span><span class="o">:</span><span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="n">typeassert</span><span class="p">,</span><span class="w"> </span><span class="n">expected</span><span class="w"> </span><span class="kt">Int64</span><span class="p">,</span><span class="w"> </span><span class="n">got</span><span class="w"> </span><span class="n">a</span><span class="w"> </span><span class="n">value</span><span class="w"> </span><span class="n">of</span><span class="w"> </span><span class="n">type</span><span class="w"> </span><span class="kt">Integer</span>
 <span class="n">Stacktrace</span><span class="o">:</span>
 <span class="w"> </span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="w"> </span><span class="n">top</span><span class="o">-</span><span class="n">level</span><span class="w"> </span><span class="n">scope</span>
-<span class="w">   </span><span class="err">@</span><span class="w"> </span><span class="n">REPL</span><span class="p">[</span><span class="mi">8</span><span class="p">]</span><span class="o">:</span><span class="mi">1</span>
+<span class="w">   </span><span class="err">@</span><span class="w"> </span><span class="n">REPL</span><span class="p">[</span><span class="mi">7</span><span class="p">]</span><span class="o">:</span><span class="mi">1</span>
+
+<span class="n">julia</span><span class="o">&gt;</span><span class="w"> </span><span class="kt">Integer</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span><span class="o">::</span><span class="kt">Real</span>
+<span class="kt">Integer</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
 </pre></div>
 </div>
-<p>最も, 組み込みの定義や関数を再定義する必要などほとんどないと思うので推奨はしない.</p>
+</section>
 </section>
 
     <script type="text/x-thebe-config">
@@ -493,20 +474,20 @@ document.write(`
                   
 <div class="prev-next-area">
     <a class="left-prev"
-       href="j_basic_intro.html"
+       href="j_basic_if.html"
        title="previous page">
       <i class="fa-solid fa-angle-left"></i>
       <div class="prev-next-info">
         <p class="prev-next-subtitle">previous</p>
-        <p class="prev-next-title">Julia の基礎</p>
+        <p class="prev-next-title">整数と浮動小数点</p>
       </div>
     </a>
     <a class="right-next"
-       href="j_basic_if.html"
+       href="j_plot_intro.html"
        title="next page">
       <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title">整数と浮動小数点</p>
+        <p class="prev-next-title">グラフ描画</p>
       </div>
       <i class="fa-solid fa-angle-right"></i>
     </a>
@@ -516,6 +497,21 @@ document.write(`
             </div>
             
             
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">型宣言</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
               
             
           </div>

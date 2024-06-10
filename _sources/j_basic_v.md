@@ -20,6 +20,16 @@ REPL や VScode では, `\+LaTeXのシンボル名+Tab` で LaTeX のシンボ�
 
 ![Gamma](_images/gamma.gif)
 
+なお, Juliaでは明示的に型宣言を行うこともできる. 型宣言には `::` 演算子を用いる. 詳しくは[型](j_basic_td.nd)に示す.
+
+```Julia
+julia> x::Int64 = 1
+1
+
+julia> typeof(x)
+Int64
+```
+
 また, 組み込みの定数や関数を再定義することもできる. (組み込みの予約語の再定義はできない. )
 
 ```Julia
