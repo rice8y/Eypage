@@ -12,7 +12,11 @@ Julia の使い方は, インタラクティブ・セッション (Read-Eval-Pri
 
 ### 1. Julia の拡張機能インストール
 
-まず, VScode の拡張機能から Julia (拡張機能ID: julialang.language-julia) を選択し, インストールする. なお, 以降ではこの拡張機能を Julia-VScode と称する.
+まず, VScode の拡張機能から Julia (拡張機能ID: julialang.language-julia) を選択し, インストールする.
+
+![Julia-VScode](_images/julia_vscode.png)
+
+なお, 以降ではこの拡張機能を Julia-VScode と称する.
 
 ### 2. パス設定
 
@@ -50,6 +54,10 @@ Julia の使い方は, インタラクティブ・セッション (Read-Eval-Pri
 `julia.enableCrashReporter`, `julia.enableTelemetry` は, Julia-VScode が機能改善のために行っているユーザの使用状況データ・クラッシュレポートの収集及び開発チームへのデータ送信に関する設定である.  両者ともに, `true` にするとデータ収集・送信を有効化でき, `false` にするとデータ収集・送信を無効化できる. なお, デフォルトでは両者とも `null` となっており, この状態ではデータ収集・送信は行われないが, UI がユーザに対してデータ収集・送信の同意を求めてくる. 環境構築時, 何を思って無効化したのか覚えていないがこのままにしておく. 基本的には `true` で良いと思う. 詳細は Julia-VScode の[プライバシーポリシー](https://github.com/julia-vscode/julia-vscode/wiki/Privacy-Policy)を参照されたい.
 
 なお, Julia-VScode では, ここで述べた機能の他にも数多くの機能を提供している. 詳細は Julia-VScode の[公式ドキュメント](https://www.julia-vscode.org/docs/v1.3/)や [`package.json`](https://github.com/julia-vscode/julia-vscode/blob/main/package.json) を参照されたい.
+
+また, 今回は `settings.json` に直接記述したが, Julia-VScode の拡張機能画面から, `管理 > 拡張機能を設定` とするか, `Ctrl+Shift+P` でコマンドパレットを表示し, `@ext:julialang.language-julia` と入力することで Julia-VScode の設定画面に遷移し, より直感的に設定をすることができる.
+
+![Julia-VScode-settings](_images/jv_settings.png)
 
 ## 環境
 

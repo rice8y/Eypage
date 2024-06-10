@@ -63,7 +63,7 @@
     <link rel="icon" href="_static/icon.png"/>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="グラフ描画" href="j_plot_intro.html" />
+    <link rel="next" title="Julia の基礎" href="j_basic_intro.html" />
     <link rel="prev" title="Julia 忘備録" href="intro.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="unknown"/>
@@ -182,6 +182,11 @@
         </ul>
         <ul class="current nav bd-sidenav">
 <li class="toctree-l1 current active"><a class="current reference internal" href="#">Julia の導入</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="j_basic_intro.html">Julia の基礎</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="j_basic_v.html">変数</a></li>
+<li class="toctree-l2"><a class="reference internal" href="j_basic_if.html">整数と浮動小数点</a></li>
+</ul><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary>
+</details></li>
 <li class="toctree-l1 has-children"><a class="reference internal" href="j_plot_intro.html">グラフ描画</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="j_plot.html">Plots</a></li>
 <li class="toctree-l2"><a class="reference internal" href="j_latex.html">PlotsでLaTeX表記</a></li>
@@ -427,7 +432,9 @@ document.write(`
 <p>また, 本サイトでは, Visual Studio Code (以降, VScode) で Julia を実行する. 以下に, VScode における Julia の導入について示す. なお, VScode のインストールについては省略する.</p>
 <section id="id2">
 <h3>1. Julia の拡張機能インストール<a class="headerlink" href="#id2" title="Link to this heading">#</a></h3>
-<p>まず, VScode の拡張機能から Julia (拡張機能ID: julialang.language-julia) を選択し, インストールする. なお, 以降ではこの拡張機能を Julia-VScode と称する.</p>
+<p>まず, VScode の拡張機能から Julia (拡張機能ID: julialang.language-julia) を選択し, インストールする.</p>
+<p><img alt="Julia-VScode" src="_images/julia_vscode.png" /></p>
+<p>なお, 以降ではこの拡張機能を Julia-VScode と称する.</p>
 </section>
 <section id="id3">
 <h3>2. パス設定<a class="headerlink" href="#id3" title="Link to this heading">#</a></h3>
@@ -460,6 +467,8 @@ document.write(`
 <h3>julia.enableCrashReporter, julia.enableTelemetry<a class="headerlink" href="#julia-enablecrashreporter-julia-enabletelemetry" title="Link to this heading">#</a></h3>
 <p><code class="docutils literal notranslate"><span class="pre">julia.enableCrashReporter</span></code>, <code class="docutils literal notranslate"><span class="pre">julia.enableTelemetry</span></code> は, Julia-VScode が機能改善のために行っているユーザの使用状況データ・クラッシュレポートの収集及び開発チームへのデータ送信に関する設定である.  両者ともに, <code class="docutils literal notranslate"><span class="pre">true</span></code> にするとデータ収集・送信を有効化でき, <code class="docutils literal notranslate"><span class="pre">false</span></code> にするとデータ収集・送信を無効化できる. なお, デフォルトでは両者とも <code class="docutils literal notranslate"><span class="pre">null</span></code> となっており, この状態ではデータ収集・送信は行われないが, UI がユーザに対してデータ収集・送信の同意を求めてくる. 環境構築時, 何を思って無効化したのか覚えていないがこのままにしておく. 基本的には <code class="docutils literal notranslate"><span class="pre">true</span></code> で良いと思う. 詳細は Julia-VScode の<a class="reference external" href="https://github.com/julia-vscode/julia-vscode/wiki/Privacy-Policy">プライバシーポリシー</a>を参照されたい.</p>
 <p>なお, Julia-VScode では, ここで述べた機能の他にも数多くの機能を提供している. 詳細は Julia-VScode の<a class="reference external" href="https://www.julia-vscode.org/docs/v1.3/">公式ドキュメント</a>や <a class="reference external" href="https://github.com/julia-vscode/julia-vscode/blob/main/package.json"><code class="docutils literal notranslate"><span class="pre">package.json</span></code></a> を参照されたい.</p>
+<p>また, 今回は <code class="docutils literal notranslate"><span class="pre">settings.json</span></code> に直接記述したが, Julia-VScode の拡張機能画面から, <code class="docutils literal notranslate"><span class="pre">管理</span> <span class="pre">&gt;</span> <span class="pre">拡張機能を設定</span></code> とするか, <code class="docutils literal notranslate"><span class="pre">Ctrl+Shift+P</span></code> でコマンドパレットを表示し, <code class="docutils literal notranslate"><span class="pre">&#64;ext:julialang.language-julia</span></code> と入力することで Julia-VScode の設定画面に遷移し, より直感的に設定をすることができる.</p>
+<p><img alt="Julia-VScode-settings" src="_images/jv_settings.png" /></p>
 </section>
 </section>
 <section id="id4">
@@ -539,11 +548,11 @@ VScode: Version 1.89.1</p>
       </div>
     </a>
     <a class="right-next"
-       href="j_plot_intro.html"
+       href="j_basic_intro.html"
        title="next page">
       <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title">グラフ描画</p>
+        <p class="prev-next-title">Julia の基礎</p>
       </div>
       <i class="fa-solid fa-angle-right"></i>
     </a>
