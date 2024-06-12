@@ -66,7 +66,7 @@
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
     <link rel="next" title="Plots" href="j_plot.html" />
-    <link rel="prev" title="Julia の導入" href="j_intro.html" />
+    <link rel="prev" title="ユーザ定義型" href="j_udt.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="unknown"/>
   </head>
@@ -184,6 +184,17 @@
         </ul>
         <ul class="current nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="j_intro.html">Julia の導入</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="j_basic_intro.html">Julia の基本文法</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="j_basic_v.html">変数</a></li>
+<li class="toctree-l2"><a class="reference internal" href="j_basic_if.html">整数と浮動小数点</a></li>
+</ul><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="j_ts_intro.html">型システム</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="j_nt.html">公称型システムとサブタイピング</a></li>
+<li class="toctree-l2"><a class="reference internal" href="j_pt.html">パラメトリック型</a></li>
+<li class="toctree-l2"><a class="reference internal" href="j_udt.html">ユーザ定義型</a></li>
+</ul><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary>
+</details></li>
 <li class="toctree-l1 current active has-children"><a class="current reference internal" href="#">グラフ描画</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="j_plot.html">Plots</a></li>
 <li class="toctree-l2"><a class="reference internal" href="j_latex.html">PlotsでLaTeX表記</a></li>
@@ -196,6 +207,7 @@
 <li class="toctree-l1 has-children"><a class="reference internal" href="sp_intro.html">おまけ</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="interrupt.html">実行の中断</a></li>
 <li class="toctree-l2"><a class="reference internal" href="update.html">バージョン更新</a></li>
+<li class="toctree-l2"><a class="reference internal" href="j_module.html">ユーザ定義モジュール</a></li>
 </ul><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary>
 </details></li>
 </ul>
@@ -436,12 +448,12 @@ document.write(`
                   
 <div class="prev-next-area">
     <a class="left-prev"
-       href="j_intro.html"
+       href="j_udt.html"
        title="previous page">
       <i class="fa-solid fa-angle-left"></i>
       <div class="prev-next-info">
         <p class="prev-next-subtitle">previous</p>
-        <p class="prev-next-title">Julia の導入</p>
+        <p class="prev-next-title">ユーザ定義型</p>
       </div>
     </a>
     <a class="right-next"

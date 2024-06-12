@@ -190,6 +190,7 @@
 <li class="toctree-l1 current active has-children"><a class="reference internal" href="j_ts_intro.html">型システム</a><ul class="current">
 <li class="toctree-l2 current active"><a class="current reference internal" href="#">公称型システムとサブタイピング</a></li>
 <li class="toctree-l2"><a class="reference internal" href="j_pt.html">パラメトリック型</a></li>
+<li class="toctree-l2"><a class="reference internal" href="j_udt.html">ユーザ定義型</a></li>
 </ul><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary>
 </details></li>
 <li class="toctree-l1 has-children"><a class="reference internal" href="j_plot_intro.html">グラフ描画</a><ul>
@@ -204,6 +205,7 @@
 <li class="toctree-l1 has-children"><a class="reference internal" href="sp_intro.html">おまけ</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="interrupt.html">実行の中断</a></li>
 <li class="toctree-l2"><a class="reference internal" href="update.html">バージョン更新</a></li>
+<li class="toctree-l2"><a class="reference internal" href="j_module.html">ユーザ定義モジュール</a></li>
 </ul><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary>
 </details></li>
 </ul>
@@ -403,7 +405,8 @@ document.write(`
                 <ul class="visible nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">公称型システム</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id3">基本型と派生型</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id4">抽象型と具象型</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id4">型階層</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id5">抽象型と具象型</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#any">Any 型</a></li>
 </ul>
             </nav>
@@ -459,7 +462,38 @@ document.write(`
 </div>
 </section>
 <section id="id4">
-<h2>抽象型と具象型<a class="headerlink" href="#id4" title="Link to this heading">#</a></h2>
+<h2>型階層<a class="headerlink" href="#id4" title="Link to this heading">#</a></h2>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>Number  (Abstract Type)
+├─ Complex
+└─ Real  (Abstract Type)
+   ├─ AbstractFloat  (Abstract Type)
+   │  ├─ Float16
+   │  ├─ Float32
+   │  ├─ Float64
+   │  └─ BigFloat
+   ├─ Integer  (Abstract Type)
+   │  ├─ Bool
+   │  ├─ Signed  (Abstract Type)
+   │  │  ├─ Int8
+   │  │  ├─ Int16
+   │  │  ├─ Int32
+   │  │  ├─ Int64
+   │  │  ├─ Int128
+   │  │  └─ BigInt
+   │  └─ Unsigned  (Abstract Type)
+   │     ├─ UInt8
+   │     ├─ UInt16
+   │     ├─ UInt32
+   │     ├─ UInt64
+   │     └─ UInt128
+   ├─ Rational
+   └─ AbstractIrrational  (Abstract Type)
+      └─ Irrational
+</pre></div>
+</div>
+</section>
+<section id="id5">
+<h2>抽象型と具象型<a class="headerlink" href="#id5" title="Link to this heading">#</a></h2>
 <p><strong>抽象型</strong>: オブジェクト(インスタンス)を生成できない型
 <strong>具象型</strong>: オブジェクト(インスタンス)を生成できる型</p>
 <p>抽象型であるかは <code class="docutils literal notranslate"><span class="pre">isabstracttype()</span></code> で, 具象型であるかは <code class="docutils literal notranslate"><span class="pre">isconcretetype()</span></code> で確認できる.</p>
@@ -569,7 +603,8 @@ document.write(`
     <ul class="visible nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">公称型システム</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id3">基本型と派生型</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id4">抽象型と具象型</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id4">型階層</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id5">抽象型と具象型</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#any">Any 型</a></li>
 </ul>
   </nav></div>

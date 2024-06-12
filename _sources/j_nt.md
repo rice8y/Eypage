@@ -52,6 +52,37 @@ true
 
 ```
 
+## 型階層
+
+```text
+Number  (Abstract Type)
+├─ Complex
+└─ Real  (Abstract Type)
+   ├─ AbstractFloat  (Abstract Type)
+   │  ├─ Float16
+   │  ├─ Float32
+   │  ├─ Float64
+   │  └─ BigFloat
+   ├─ Integer  (Abstract Type)
+   │  ├─ Bool
+   │  ├─ Signed  (Abstract Type)
+   │  │  ├─ Int8
+   │  │  ├─ Int16
+   │  │  ├─ Int32
+   │  │  ├─ Int64
+   │  │  ├─ Int128
+   │  │  └─ BigInt
+   │  └─ Unsigned  (Abstract Type)
+   │     ├─ UInt8
+   │     ├─ UInt16
+   │     ├─ UInt32
+   │     ├─ UInt64
+   │     └─ UInt128
+   ├─ Rational
+   └─ AbstractIrrational  (Abstract Type)
+      └─ Irrational
+```
+
 ## 抽象型と具象型
 
 **抽象型**: オブジェクト(インスタンス)を生成できない型
