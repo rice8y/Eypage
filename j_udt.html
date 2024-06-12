@@ -506,7 +506,7 @@ document.write(`
 <div class="highlight-Julia notranslate"><div class="highlight"><pre><span></span><span class="n">julia</span><span class="o">&gt;</span><span class="w"> </span><span class="k">primitive</span><span class="w"> </span><span class="k">type</span> <span class="kt">Int24</span><span class="w"> </span><span class="o">&lt;:</span><span class="w"> </span><span class="kt">Signed</span><span class="w"> </span><span class="mi">24</span><span class="w"> </span><span class="k">end</span>
 </pre></div>
 </div>
-<p><code class="docutils literal notranslate"><span class="pre">primitive</span> <span class="pre">type</span> <span class="pre">(型名)</span> <span class="pre">end</span></code> または <code class="docutils literal notranslate"><span class="pre">primitive</span> <span class="pre">type</span> <span class="pre">(型名)</span> <span class="pre">&lt;:</span> <span class="pre">(基本型)</span> <span class="pre">end</span></code> のように定義する.</p>
+<p><code class="docutils literal notranslate"><span class="pre">primitive</span> <span class="pre">type</span> <span class="pre">(型名)</span> <span class="pre">(ビットサイズ)</span> <span class="pre">end</span></code> のように定義する.</p>
 <p>上記の例では, <code class="docutils literal notranslate"><span class="pre">Signed</span></code> を基本型とする <code class="docutils literal notranslate"><span class="pre">Int24</span></code> (24ビット符号付き整数)を定義している. なお, 上記の例はプリミティブ型を定義しただけで, 中身はないためこのままでは使えない. 実際に使えるようにするための方法は, <a class="reference internal" href="j_module.html"><span class="std std-doc">ユーザ定義モジュール</span></a>で示す.</p>
 </section>
 </section>

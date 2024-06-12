@@ -106,6 +106,6 @@ julia> primitive type Int24 <: Signed 24 end
 
 ```
 
-`primitive type (型名) end` または `primitive type (型名) <: (基本型) end` のように定義する.
+`primitive type (型名) (ビットサイズ) end` のように定義する.
 
 上記の例では, `Signed` を基本型とする `Int24` (24ビット符号付き整数)を定義している. なお, 上記の例はプリミティブ型を定義しただけで, 中身はないためこのままでは使えない. 実際に使えるようにするための方法は, [ユーザ定義モジュール](j_module.md)で示す.
