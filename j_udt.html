@@ -410,6 +410,7 @@ document.write(`
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id6">プリミティブ型</a></li>
 </ul>
 </li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id7">コンストラクタ定義</a></li>
 </ul>
             </nav>
         </div>
@@ -444,9 +445,13 @@ document.write(`
 <div class="highlight-Julia notranslate"><div class="highlight"><pre><span></span><span class="n">julia</span><span class="o">&gt;</span><span class="w"> </span><span class="k">abstract</span><span class="w"> </span><span class="k">type</span> <span class="kt">MyNumber</span><span class="w"> </span><span class="k">end</span>
 
 <span class="n">julia</span><span class="o">&gt;</span><span class="w"> </span><span class="k">abstract</span><span class="w"> </span><span class="k">type</span> <span class="kt">MyReal</span><span class="w"> </span><span class="o">&lt;:</span><span class="w"> </span><span class="kt">MyNumber</span><span class="w"> </span><span class="k">end</span>
+
+<span class="n">julia</span><span class="o">&gt;</span><span class="w"> </span><span class="k">abstract</span><span class="w"> </span><span class="k">type</span> <span class="kt">AbstractData</span><span class="p">{</span><span class="kt">T</span><span class="p">}</span><span class="w"> </span><span class="k">end</span>
+
+<span class="n">julia</span><span class="o">&gt;</span><span class="w"> </span><span class="k">abstract</span><span class="w"> </span><span class="k">type</span> <span class="kt">AbstractPoint</span><span class="p">{</span><span class="kt">T</span><span class="w"> </span><span class="o">&lt;:</span><span class="w"> </span><span class="kt">Real</span><span class="p">}</span><span class="w"> </span><span class="k">end</span>
 </pre></div>
 </div>
-<p>抽象型は, <code class="docutils literal notranslate"><span class="pre">abstract</span> <span class="pre">type</span> <span class="pre">(型名)</span> <span class="pre">end</span></code> または <code class="docutils literal notranslate"><span class="pre">abstract</span> <span class="pre">type</span> <span class="pre">(型名)</span> <span class="pre">&lt;:</span> <span class="pre">(基本型)</span> <span class="pre">end</span></code> のように定義する. なお, 基本型の指定を省略した場合は, 基本型として <code class="docutils literal notranslate"><span class="pre">Any</span></code> が指定される.</p>
+<p>抽象型は, <code class="docutils literal notranslate"><span class="pre">abstract</span> <span class="pre">type</span> <span class="pre">(型名)</span> <span class="pre">end</span></code> または <code class="docutils literal notranslate"><span class="pre">abstract</span> <span class="pre">type</span> <span class="pre">(型名)</span> <span class="pre">&lt;:</span> <span class="pre">(基本型)</span> <span class="pre">end</span></code> のように定義する. なお, 基本型の指定を省略した場合は, 基本型として <code class="docutils literal notranslate"><span class="pre">Any</span></code> が指定される. また, 3, 4番目はパラメトリック抽象型の定義例であり, <code class="docutils literal notranslate"><span class="pre">{}</span></code> の中に型パラメータを指定する. なお, 4番目は型制約が付いており, <code class="docutils literal notranslate"><span class="pre">where</span></code> ではなく <code class="docutils literal notranslate"><span class="pre">{}</span></code> の中で制約を記述する.</p>
 </section>
 <section id="id4">
 <h3>構造体<a class="headerlink" href="#id4" title="Link to this heading">#</a></h3>
@@ -454,9 +459,16 @@ document.write(`
 <span class="w">        </span><span class="n">value</span><span class="o">::</span><span class="kt">BigInt</span>
 <span class="w">        </span><span class="n">point</span><span class="o">::</span><span class="kt">Int</span>
 <span class="w">       </span><span class="k">end</span>
+
+<span class="n">julia</span><span class="o">&gt;</span><span class="w"> </span><span class="k">struct</span> <span class="kt">Point2D</span><span class="p">{</span><span class="kt">T</span><span class="p">}</span><span class="w"> </span><span class="o">&lt;:</span><span class="w"> </span><span class="kt">AbstractPoint</span><span class="p">{</span><span class="kt">T</span><span class="p">}</span>
+<span class="w">        </span><span class="n">x</span><span class="o">::</span><span class="kt">T</span>
+<span class="w">        </span><span class="n">y</span><span class="o">::</span><span class="kt">T</span>
+<span class="w">       </span><span class="k">end</span>
+
+<span class="n">julia</span><span class="o">&gt;</span><span class="w"> </span><span class="k">struct</span> <span class="kt">MySingleton</span><span class="w"> </span><span class="k">end</span>
 </pre></div>
 </div>
-<p><code class="docutils literal notranslate"><span class="pre">struct</span> <span class="pre">(型名)</span> <span class="pre">end</span></code> または <code class="docutils literal notranslate"><span class="pre">struct</span> <span class="pre">(型名)</span> <span class="pre">&lt;:</span> <span class="pre">(基本型)</span> <span class="pre">end</span></code> のように定義する.</p>
+<p><code class="docutils literal notranslate"><span class="pre">struct</span> <span class="pre">(型名)</span> <span class="pre">end</span></code> または <code class="docutils literal notranslate"><span class="pre">struct</span> <span class="pre">(型名)</span> <span class="pre">&lt;:</span> <span class="pre">(基本型)</span> <span class="pre">end</span></code> のように定義する. 2番目は, <code class="docutils literal notranslate"><span class="pre">AbstractPoint{T}</span></code> を基本型に指定したものである. つまり, パラメトリック抽象型を基本型とした公称的派生型である. また, 2番目では, 型パラメータとして宣言している <code class="docutils literal notranslate"><span class="pre">T</span></code> をフィールドの型アノテーションにも利用している. 3番目のように, フィールドを持たない構造体をシングルトン型という.</p>
 </section>
 <section id="id5">
 <h3>可変構造体<a class="headerlink" href="#id5" title="Link to this heading">#</a></h3>
@@ -471,6 +483,11 @@ document.write(`
 <div class="highlight-Julia notranslate"><div class="highlight"><pre><span></span><span class="n">julia</span><span class="o">&gt;</span><span class="w"> </span><span class="k">struct</span> <span class="kt">Past</span>
 <span class="w">        </span><span class="n">value</span>
 <span class="w">        </span><span class="n">done</span><span class="o">::</span><span class="kt">Bool</span>
+<span class="w">       </span><span class="k">end</span>
+
+<span class="n">julia</span><span class="o">&gt;</span><span class="w"> </span><span class="k">mutable</span><span class="w"> </span><span class="k">struct</span> <span class="kt">MPoint2D</span><span class="p">{</span><span class="kt">T</span><span class="p">}</span><span class="w"> </span><span class="o">&lt;:</span><span class="w"> </span><span class="kt">AbstractPoint</span><span class="p">{</span><span class="kt">T</span><span class="p">}</span>
+<span class="w">        </span><span class="n">x</span><span class="o">::</span><span class="kt">T</span>
+<span class="w">        </span><span class="n">y</span><span class="o">::</span><span class="kt">T</span>
 <span class="w">       </span><span class="k">end</span>
 </pre></div>
 </div>
@@ -504,11 +521,103 @@ document.write(`
 <section id="id6">
 <h3>プリミティブ型<a class="headerlink" href="#id6" title="Link to this heading">#</a></h3>
 <div class="highlight-Julia notranslate"><div class="highlight"><pre><span></span><span class="n">julia</span><span class="o">&gt;</span><span class="w"> </span><span class="k">primitive</span><span class="w"> </span><span class="k">type</span> <span class="kt">Int24</span><span class="w"> </span><span class="o">&lt;:</span><span class="w"> </span><span class="kt">Signed</span><span class="w"> </span><span class="mi">24</span><span class="w"> </span><span class="k">end</span>
+
+<span class="n">julia</span><span class="o">&gt;</span><span class="w"> </span><span class="k">primitive</span><span class="w"> </span><span class="k">type</span> <span class="kt">Address</span><span class="p">{</span><span class="kt">T</span><span class="p">}</span><span class="w"> </span><span class="mi">64</span><span class="w"> </span><span class="k">end</span>
 </pre></div>
 </div>
-<p><code class="docutils literal notranslate"><span class="pre">primitive</span> <span class="pre">type</span> <span class="pre">(型名)</span> <span class="pre">(ビットサイズ)</span> <span class="pre">end</span></code> のように定義する.</p>
+<p><code class="docutils literal notranslate"><span class="pre">primitive</span> <span class="pre">type</span> <span class="pre">(型名)</span> <span class="pre">(ビット数)</span> <span class="pre">end</span></code> のように定義する.</p>
 <p>上記の例では, <code class="docutils literal notranslate"><span class="pre">Signed</span></code> を基本型とする <code class="docutils literal notranslate"><span class="pre">Int24</span></code> (24ビット符号付き整数)を定義している. なお, 上記の例はプリミティブ型を定義しただけで, 中身はないためこのままでは使えない. 実際に使えるようにするための方法は, <a class="reference internal" href="j_module.html"><span class="std std-doc">ユーザ定義モジュール</span></a>で示す.</p>
 </section>
+</section>
+<section id="id7">
+<h2>コンストラクタ定義<a class="headerlink" href="#id7" title="Link to this heading">#</a></h2>
+<div class="highlight-Julia notranslate"><div class="highlight"><pre><span></span><span class="n">julia</span><span class="o">&gt;</span><span class="w"> </span><span class="k">struct</span> <span class="kt">Point2D</span><span class="p">{</span><span class="kt">T</span><span class="p">}</span><span class="w"> </span><span class="o">&lt;:</span><span class="w"> </span><span class="kt">AbstractPoint</span><span class="p">{</span><span class="kt">T</span><span class="p">}</span>
+<span class="w">        </span><span class="n">x</span><span class="o">::</span><span class="kt">T</span>
+<span class="w">        </span><span class="n">y</span><span class="o">::</span><span class="kt">T</span>
+<span class="w">       </span><span class="k">end</span>
+<span class="w">    </span>
+<span class="n">julia</span><span class="o">&gt;</span><span class="w"> </span><span class="n">pt</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Point2D</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="mi">2</span><span class="p">)</span>
+<span class="kt">Point2D</span><span class="p">{</span><span class="kt">Int64</span><span class="p">}(</span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="mi">2</span><span class="p">)</span>
+
+<span class="n">julia</span><span class="o">&gt;</span><span class="w"> </span><span class="n">pt</span><span class="o">.</span><span class="n">x</span>
+<span class="mi">1</span>
+
+<span class="n">julia</span><span class="o">&gt;</span><span class="w"> </span><span class="n">pt</span><span class="o">.</span><span class="n">y</span>
+<span class="mi">2</span>
+</pre></div>
+</div>
+<p>上記の例では, <code class="docutils literal notranslate"><span class="pre">Point2D</span></code> という型を定義し, そのインスタンスを生成している. ここで, <code class="docutils literal notranslate"><span class="pre">Point2D{Int64}(1,</span> <span class="pre">2)</span></code> 型のインスタンスを生成した <code class="docutils literal notranslate"><span class="pre">Point2D()</span></code> をコンストラクタという. また, 上記の例のようにフィールドの定義数と引数の数が等しく, それぞれ対応するフィールド値として設定されたインスタンスを生成するコンストラクタをデフォルトコンストラクタという.</p>
+<p>以下に, 3種類のコンストラクタを定義する.</p>
+<div class="highlight-Julia notranslate"><div class="highlight"><pre><span></span><span class="k">function</span><span class="w"> </span><span class="n">MPoint2D</span><span class="p">(</span><span class="n">v</span><span class="p">)</span>
+<span class="w">    </span><span class="n">MPoint2D</span><span class="p">(</span><span class="n">v</span><span class="p">,</span><span class="w"> </span><span class="n">v</span><span class="p">)</span>
+<span class="k">end</span>
+
+<span class="k">function</span><span class="w"> </span><span class="n">MPoint2D</span><span class="p">()</span>
+<span class="w">    </span><span class="n">MPoint2D</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="p">)</span>
+<span class="k">end</span>
+
+
+<span class="k">function</span><span class="w"> </span><span class="kt">MPoint2D</span><span class="p">{</span><span class="kt">T</span><span class="p">}()</span><span class="w"> </span><span class="k">where</span><span class="w"> </span><span class="kt">T</span><span class="w"> </span><span class="o">&lt;:</span><span class="w"> </span><span class="kt">Real</span>
+<span class="w">    </span><span class="n">MPoint2D</span><span class="p">(</span><span class="n">zero</span><span class="p">(</span><span class="n">T</span><span class="p">))</span>
+<span class="k">end</span>
+</pre></div>
+</div>
+<p>1番目は引数を1つだけ取るもの, 2番目は引数を取らないもの, 3番目は引数は取らないが型パラメータを指定するものである. なお, これらのコンストラクタは外部コンストラクタという.</p>
+<p>上記のコンストラクタの使用例を以下に示す.</p>
+<div class="highlight-Julia notranslate"><div class="highlight"><pre><span></span><span class="n">julia</span><span class="o">&gt;</span><span class="w"> </span><span class="n">MPoint2D</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="mi">2</span><span class="p">)</span>
+<span class="kt">MPoint2D</span><span class="p">{</span><span class="kt">Int64</span><span class="p">}(</span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="mi">2</span><span class="p">)</span>
+
+<span class="n">julia</span><span class="o">&gt;</span><span class="w"> </span><span class="n">MPoint2D</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+<span class="kt">MPoint2D</span><span class="p">{</span><span class="kt">Int64</span><span class="p">}(</span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="mi">1</span><span class="p">)</span>
+
+<span class="n">julia</span><span class="o">&gt;</span><span class="w"> </span><span class="n">MPoint2D</span><span class="p">()</span>
+<span class="kt">MPoint2D</span><span class="p">{</span><span class="kt">Float64</span><span class="p">}(</span><span class="mf">0.0</span><span class="p">,</span><span class="w"> </span><span class="mf">0.0</span><span class="p">)</span>
+
+<span class="n">julia</span><span class="o">&gt;</span><span class="w"> </span><span class="kt">MPoint2D</span><span class="p">{</span><span class="kt">Int</span><span class="p">}()</span>
+<span class="kt">MPoint2D</span><span class="p">{</span><span class="kt">Int64</span><span class="p">}(</span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>1番目はデフォルトコンストラクタ, 2～3番目は上記のコンストラクタである.</p>
+<p>これらに対し, 内部コンストラクタの例を以下に示す.</p>
+<div class="highlight-Julia notranslate"><div class="highlight"><pre><span></span><span class="k">mutable</span><span class="w"> </span><span class="k">struct</span> <span class="kt">Future</span>
+<span class="w">    </span><span class="n">value</span>
+<span class="w">    </span><span class="n">done</span><span class="o">::</span><span class="kt">Bool</span>
+
+<span class="w">    </span><span class="k">function</span><span class="w"> </span><span class="n">Future</span><span class="p">()</span>
+<span class="w">        </span><span class="n">obj</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">new</span><span class="p">()</span>
+<span class="w">        </span><span class="n">obj</span><span class="o">.</span><span class="n">done</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">false</span>
+<span class="w">        </span><span class="n">obj</span>
+<span class="w">    </span><span class="k">end</span>
+<span class="w">    </span><span class="k">function</span><span class="w"> </span><span class="n">Future</span><span class="p">(</span><span class="n">value</span><span class="p">)</span>
+<span class="w">        </span><span class="n">new</span><span class="p">(</span><span class="n">value</span><span class="p">,</span><span class="w"> </span><span class="nb">true</span><span class="p">)</span>
+<span class="w">    </span><span class="k">end</span>
+<span class="w"> </span><span class="k">end</span>
+</pre></div>
+</div>
+<p>1番目は引数を取らないもの, 2番目は引数を1つ取るものである. また, これらのコンストラクタを内部コンストラクタという.</p>
+<p>上記のコンストラクタの使用例を以下に示す.</p>
+<div class="highlight-Julia notranslate"><div class="highlight"><pre><span></span><span class="n">julia</span><span class="o">&gt;</span><span class="w"> </span><span class="n">f1</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Future</span><span class="p">()</span>
+<span class="n">Future</span><span class="p">(</span><span class="c">#undef, false)</span>
+
+<span class="n">julia</span><span class="o">&gt;</span><span class="w"> </span><span class="n">f2</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Future</span><span class="p">(</span><span class="s">&quot;Concrete Value&quot;</span><span class="p">)</span>
+<span class="n">Future</span><span class="p">(</span><span class="s">&quot;Concrete Value&quot;</span><span class="p">,</span><span class="w"> </span><span class="nb">true</span><span class="p">)</span>
+
+
+<span class="n">julia</span><span class="o">&gt;</span><span class="w"> </span><span class="n">fDC</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Future</span><span class="p">(</span><span class="s">&quot;Concrete Value&quot;</span><span class="p">,</span><span class="w"> </span><span class="nb">true</span><span class="p">)</span>
+<span class="n">ERROR</span><span class="o">:</span><span class="w"> </span><span class="kt">MethodError</span><span class="o">:</span><span class="w"> </span><span class="n">no</span><span class="w"> </span><span class="n">method</span><span class="w"> </span><span class="n">matching</span><span class="w"> </span><span class="n">Future</span><span class="p">(</span><span class="o">::</span><span class="kt">String</span><span class="p">,</span><span class="w"> </span><span class="o">::</span><span class="kt">Bool</span><span class="p">)</span>
+
+<span class="n">Closest</span><span class="w"> </span><span class="n">candidates</span><span class="w"> </span><span class="n">are</span><span class="o">:</span>
+<span class="w">  </span><span class="n">Future</span><span class="p">(</span><span class="o">::</span><span class="kt">Any</span><span class="p">)</span>
+<span class="w">   </span><span class="err">@</span><span class="w"> </span><span class="n">Main</span><span class="w"> </span><span class="n">REPL</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">:</span><span class="mi">10</span>
+
+<span class="n">Stacktrace</span><span class="o">:</span>
+<span class="w"> </span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="w"> </span><span class="n">top</span><span class="o">-</span><span class="n">level</span><span class="w"> </span><span class="n">scope</span>
+<span class="w">   </span><span class="err">@</span><span class="w"> </span><span class="n">REPL</span><span class="p">[</span><span class="mi">5</span><span class="p">]</span><span class="o">:</span><span class="mi">1</span>
+</pre></div>
+</div>
+<p>1番目は引数を取らないもの, 2番目は引数を1つ取るもの, 3番目はデフォルトコンストラクタである. ここで, 内部コンストラクタを定義したことによりデフォルトコンストラクタを利用してインスタンスを生成できなくなったことが分かる.これは, デフォルトインストラクタが暗黙的に定義された内部コンストラクタであるからである. ゆえに, 別の内部コンストラクタを明示的に定義するとデフォルトコンストラクタは利用できなくなる.</p>
+<p><strong>内部コンストラクタ</strong>：インスタンスの生成に制限を設ける
+<strong>外部コンストラクタ</strong>：インスタンス生成にバリエーションを持たせる</p>
 </section>
 </section>
 
@@ -583,6 +692,7 @@ document.write(`
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id6">プリミティブ型</a></li>
 </ul>
 </li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id7">コンストラクタ定義</a></li>
 </ul>
   </nav></div>
 
