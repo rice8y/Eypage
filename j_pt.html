@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>Julia の基本文法 &#8212; Y&#39;s Page</title>
+    <title>パラメトリック型 &#8212; Y&#39;s Page</title>
   
   
   
@@ -58,15 +58,13 @@
     <script async="async" src="_static/sphinx-thebe.js?v=c100c467"></script>
     <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
     <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
-    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
-    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
-    <script>DOCUMENTATION_OPTIONS.pagename = 'j_basic_intro';</script>
-    <link rel="canonical" href="https://rice8y.github.io/Eypage/j_basic_intro.html" />
+    <script>DOCUMENTATION_OPTIONS.pagename = 'j_pt';</script>
+    <link rel="canonical" href="https://rice8y.github.io/Eypage/j_pt.html" />
     <link rel="icon" href="_static/icon.png"/>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="変数" href="j_basic_v.html" />
-    <link rel="prev" title="Julia の導入" href="j_intro.html" />
+    <link rel="next" title="グラフ描画" href="j_plot_intro.html" />
+    <link rel="prev" title="公称型システムとサブタイピング" href="j_nt.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="unknown"/>
   </head>
@@ -184,15 +182,15 @@
         </ul>
         <ul class="current nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="j_intro.html">Julia の導入</a></li>
-<li class="toctree-l1 current active has-children"><a class="current reference internal" href="#">Julia の基本文法</a><ul>
+<li class="toctree-l1 has-children"><a class="reference internal" href="j_basic_intro.html">Julia の基本文法</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="j_basic_v.html">変数</a></li>
 <li class="toctree-l2"><a class="reference internal" href="j_basic_if.html">整数と浮動小数点</a></li>
-</ul><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary>
-</details></li>
-<li class="toctree-l1 has-children"><a class="reference internal" href="j_ts_intro.html">型システム</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="j_nt.html">公称型システムとサブタイピング</a></li>
-<li class="toctree-l2"><a class="reference internal" href="j_pt.html">パラメトリック型</a></li>
 </ul><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary>
+</details></li>
+<li class="toctree-l1 current active has-children"><a class="reference internal" href="j_ts_intro.html">型システム</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="j_nt.html">公称型システムとサブタイピング</a></li>
+<li class="toctree-l2 current active"><a class="current reference internal" href="#">パラメトリック型</a></li>
+</ul><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary>
 </details></li>
 <li class="toctree-l1 has-children"><a class="reference internal" href="j_plot_intro.html">グラフ描画</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="j_plot.html">Plots</a></li>
@@ -279,7 +277,7 @@
       
       
       
-      <li><a href="https://github.com/rice8y/Eypage/edit/main/docs/j_basic_intro.md" target="_blank"
+      <li><a href="https://github.com/rice8y/Eypage/edit/main/docs/j_pt.md" target="_blank"
    class="btn btn-sm btn-source-edit-button dropdown-item"
    title="Suggest edit"
    data-bs-placement="left" data-bs-toggle="tooltip"
@@ -309,7 +307,7 @@
       
       
       
-      <li><a href="_sources/j_basic_intro.md" target="_blank"
+      <li><a href="_sources/j_pt.md" target="_blank"
    class="btn btn-sm btn-download-source-button dropdown-item"
    title="Download source file"
    data-bs-placement="left" data-bs-toggle="tooltip"
@@ -380,7 +378,9 @@ document.write(`
   </button>
 `);
 </script>
-
+<label class="sidebar-toggle secondary-toggle btn btn-sm" for="__secondary"title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</label>
 </div></div>
       
     </div>
@@ -391,11 +391,20 @@ document.write(`
               
 
 <div id="jb-print-docs-body" class="onlyprint">
-    <h1>Julia の基本文法</h1>
+    <h1>パラメトリック型</h1>
     <!-- Table of contents -->
     <div id="print-main-content">
         <div id="jb-print-toc">
             
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#unionall">UnionAll 型</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">パラメトリック抽象型</a></li>
+</ul>
+            </nav>
         </div>
     </div>
 </div>
@@ -405,14 +414,83 @@ document.write(`
 <div id="searchbox"></div>
                 <article class="bd-article">
                   
-  <section class="tex2jax_ignore mathjax_ignore" id="julia">
-<h1>Julia の基本文法<a class="headerlink" href="#julia" title="Link to this heading">#</a></h1>
-<div class="toctree-wrapper compound">
-<ul>
-<li class="toctree-l1"><a class="reference internal" href="j_basic_v.html">変数</a></li>
-<li class="toctree-l1"><a class="reference internal" href="j_basic_if.html">整数と浮動小数点</a></li>
-</ul>
+  <section class="tex2jax_ignore mathjax_ignore" id="id1">
+<h1>パラメトリック型<a class="headerlink" href="#id1" title="Link to this heading">#</a></h1>
+<p><code class="docutils literal notranslate"><span class="pre">Number</span></code> の直接の派生型には, <code class="docutils literal notranslate"><span class="pre">Real</span></code> と <code class="docutils literal notranslate"><span class="pre">Complex</span></code> が存在する.</p>
+<div class="highlight-Julia notranslate"><div class="highlight"><pre><span></span><span class="n">julia</span><span class="o">&gt;</span><span class="w"> </span><span class="n">subtypes</span><span class="p">(</span><span class="kt">Number</span><span class="p">)</span>
+<span class="mi">2</span><span class="o">-</span><span class="n">element</span><span class="w"> </span><span class="kt">Vector</span><span class="p">{</span><span class="kt">Any</span><span class="p">}</span><span class="o">:</span>
+<span class="w"> </span><span class="kt">Complex</span>
+<span class="w"> </span><span class="kt">Real</span>
+</pre></div>
 </div>
+<p>ここで, <code class="docutils literal notranslate"><span class="pre">Real</span></code> は抽象型である.</p>
+<div class="highlight-Julia notranslate"><div class="highlight"><pre><span></span><span class="n">julia</span><span class="o">&gt;</span><span class="w"> </span><span class="n">isabstracttype</span><span class="p">(</span><span class="kt">Real</span><span class="p">)</span>
+<span class="nb">true</span>
+</pre></div>
+</div>
+<p><code class="docutils literal notranslate"><span class="pre">Complex</span></code> についても同様に型を調べてみる.</p>
+<div class="highlight-Julia notranslate"><div class="highlight"><pre><span></span><span class="n">julia</span><span class="o">&gt;</span><span class="w"> </span><span class="n">isabstracttype</span><span class="p">(</span><span class="kt">Complex</span><span class="p">)</span>
+<span class="nb">false</span>
+
+<span class="n">julia</span><span class="o">&gt;</span><span class="w"> </span><span class="n">isconcretetype</span><span class="p">(</span><span class="kt">Complex</span><span class="p">)</span>
+<span class="nb">false</span>
+</pre></div>
+</div>
+<p>すると, <code class="docutils literal notranslate"><span class="pre">Complex</span></code> は抽象型でも具象型でもないことが分かる. ここで, 複素数の値を用いてその型を調べてみる.</p>
+<div class="highlight-Julia notranslate"><div class="highlight"><pre><span></span><span class="n">julia</span><span class="o">&gt;</span><span class="w"> </span><span class="n">typeof</span><span class="p">(</span><span class="nb">im</span><span class="p">)</span>
+<span class="kt">Complex</span><span class="p">{</span><span class="kt">Bool</span><span class="p">}</span>
+
+<span class="n">julia</span><span class="o">&gt;</span><span class="w"> </span><span class="n">typeof</span><span class="p">(</span><span class="mi">1</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="nb">im</span><span class="p">)</span>
+<span class="kt">Complex</span><span class="p">{</span><span class="kt">Int64</span><span class="p">}</span>
+
+<span class="n">julia</span><span class="o">&gt;</span><span class="w"> </span><span class="n">typeof</span><span class="p">(</span><span class="mf">1.0</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mf">1.0</span><span class="nb">im</span><span class="p">)</span>
+<span class="kt">ComplexF64</span><span class="w"> </span><span class="p">(</span><span class="n">alias</span><span class="w"> </span><span class="k">for</span><span class="w"> </span><span class="kt">Complex</span><span class="p">{</span><span class="kt">Float64</span><span class="p">})</span>
+</pre></div>
+</div>
+<p><code class="docutils literal notranslate"><span class="pre">Comlex{Bool}</span></code> , <code class="docutils literal notranslate"><span class="pre">Complex{Int64}</span></code> が返ってきた. ここで, <code class="docutils literal notranslate"><span class="pre">Complex{}</span></code> のうち, <code class="docutils literal notranslate"><span class="pre">{}</span></code> に入るものを型パラメータ, 型パラメータの指定ができる型(ここでは <code class="docutils literal notranslate"><span class="pre">Complex</span></code>)をパラメトリック型という.</p>
+<div class="highlight-Julia notranslate"><div class="highlight"><pre><span></span><span class="n">julia</span><span class="o">&gt;</span><span class="w"> </span><span class="n">isconcretetype</span><span class="p">(</span><span class="kt">Complex</span><span class="p">)</span>
+<span class="nb">false</span>
+
+<span class="n">julia</span><span class="o">&gt;</span><span class="w"> </span><span class="n">isconcretetype</span><span class="p">(</span><span class="kt">Complex</span><span class="p">{</span><span class="kt">Int</span><span class="p">})</span>
+<span class="nb">true</span>
+</pre></div>
+</div>
+<p>また, 上記の例より, 型パラメータを指定すると <code class="docutils literal notranslate"><span class="pre">Complex</span></code> は具象型になることが分かる. つまり, パラメトリック型は型パラメータを指定すると具象型となるのである.</p>
+<section id="unionall">
+<h2>UnionAll 型<a class="headerlink" href="#unionall" title="Link to this heading">#</a></h2>
+<p>ある型がパラメトリック型であるかを確認する方法として, <code class="docutils literal notranslate"><span class="pre">typeof()</span></code> の値を見る方法がある.</p>
+<div class="highlight-Julia notranslate"><div class="highlight"><pre><span></span><span class="n">julia</span><span class="o">&gt;</span><span class="w"> </span><span class="n">typeof</span><span class="p">(</span><span class="kt">Int</span><span class="p">)</span>
+<span class="kt">DataType</span>
+
+<span class="n">julia</span><span class="o">&gt;</span><span class="w"> </span><span class="n">typeof</span><span class="p">(</span><span class="kt">Complex</span><span class="p">)</span>
+<span class="kt">UnionAll</span>
+
+<span class="n">julia</span><span class="o">&gt;</span><span class="w"> </span><span class="n">typeof</span><span class="p">(</span><span class="kt">Complex</span><span class="p">{</span><span class="kt">Int</span><span class="p">})</span>
+<span class="kt">DataType</span>
+</pre></div>
+</div>
+<p>上記の例より, 型パラメータを取らない型の場合は, <code class="docutils literal notranslate"><span class="pre">DataType</span></code> が返り, パラメトリック型の場合は, 型パラメータが指定されていなければ <code class="docutils literal notranslate"><span class="pre">UnionAll</span></code> , 型パラメータが指定されていれば <code class="docutils literal notranslate"><span class="pre">DataType</span></code> が返ってくることが分かる. ここで, <code class="docutils literal notranslate"><span class="pre">typeof()</span></code> で <code class="docutils literal notranslate"><span class="pre">UnionAll</span></code> が返る型を UnionAll型という. <code class="docutils literal notranslate"><span class="pre">Complex</span></code> は パラメトリック型であるが, より正確には UnionAll 型である.</p>
+</section>
+<section id="id2">
+<h2>パラメトリック抽象型<a class="headerlink" href="#id2" title="Link to this heading">#</a></h2>
+<div class="highlight-Julia notranslate"><div class="highlight"><pre><span></span><span class="n">julia</span><span class="o">&gt;</span><span class="w"> </span><span class="n">isabstracttype</span><span class="p">(</span><span class="kt">Array</span><span class="p">)</span>
+<span class="nb">false</span>
+
+<span class="n">julia</span><span class="o">&gt;</span><span class="w"> </span><span class="n">typeof</span><span class="p">(</span><span class="kt">Array</span><span class="p">)</span>
+<span class="kt">UnionAll</span>
+
+<span class="n">julia</span><span class="o">&gt;</span><span class="w"> </span><span class="kt">Array</span><span class="w"> </span><span class="o">|&gt;</span><span class="w"> </span><span class="n">supertype</span><span class="w"> </span><span class="o">|&gt;</span><span class="w"> </span><span class="n">supertype</span>
+<span class="kt">AbstractArray</span>
+
+<span class="n">julia</span><span class="o">&gt;</span><span class="w"> </span><span class="n">isabstracttype</span><span class="p">(</span><span class="kt">AbstractArray</span><span class="p">)</span>
+<span class="nb">true</span>
+
+<span class="n">julia</span><span class="o">&gt;</span><span class="w"> </span><span class="n">typeof</span><span class="p">(</span><span class="kt">AbstractArray</span><span class="p">)</span>
+<span class="kt">UnionAll</span>
+</pre></div>
+</div>
+<p>上記の例より, <code class="docutils literal notranslate"><span class="pre">Array</span></code> は 抽象型ではなく UnionAll 型であるが, <code class="docutils literal notranslate"><span class="pre">Array</span></code> の基本型の基本型である <code class="docutils literal notranslate"><span class="pre">AbstractArray</span></code> は抽象型であり UnionAll 型であることが分かる. このように, パラメトリック型でありかつ抽象型であるような型を, パラメトリック抽象型という.</p>
+</section>
 </section>
 
     <script type="text/x-thebe-config">
@@ -446,20 +524,20 @@ document.write(`
                   
 <div class="prev-next-area">
     <a class="left-prev"
-       href="j_intro.html"
+       href="j_nt.html"
        title="previous page">
       <i class="fa-solid fa-angle-left"></i>
       <div class="prev-next-info">
         <p class="prev-next-subtitle">previous</p>
-        <p class="prev-next-title">Julia の導入</p>
+        <p class="prev-next-title">公称型システムとサブタイピング</p>
       </div>
     </a>
     <a class="right-next"
-       href="j_basic_v.html"
+       href="j_plot_intro.html"
        title="next page">
       <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title">変数</p>
+        <p class="prev-next-title">グラフ描画</p>
       </div>
       <i class="fa-solid fa-angle-right"></i>
     </a>
@@ -469,6 +547,22 @@ document.write(`
             </div>
             
             
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#unionall">UnionAll 型</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">パラメトリック抽象型</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
               
             
           </div>

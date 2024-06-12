@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>Julia の基本文法 &#8212; Y&#39;s Page</title>
+    <title>型システム &#8212; Y&#39;s Page</title>
   
   
   
@@ -58,15 +58,13 @@
     <script async="async" src="_static/sphinx-thebe.js?v=c100c467"></script>
     <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
     <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
-    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
-    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
-    <script>DOCUMENTATION_OPTIONS.pagename = 'j_basic_intro';</script>
-    <link rel="canonical" href="https://rice8y.github.io/Eypage/j_basic_intro.html" />
+    <script>DOCUMENTATION_OPTIONS.pagename = 'j_ts_intro';</script>
+    <link rel="canonical" href="https://rice8y.github.io/Eypage/j_ts_intro.html" />
     <link rel="icon" href="_static/icon.png"/>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="変数" href="j_basic_v.html" />
-    <link rel="prev" title="Julia の導入" href="j_intro.html" />
+    <link rel="next" title="公称型システムとサブタイピング" href="j_nt.html" />
+    <link rel="prev" title="整数と浮動小数点" href="j_basic_if.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="unknown"/>
   </head>
@@ -184,15 +182,15 @@
         </ul>
         <ul class="current nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="j_intro.html">Julia の導入</a></li>
-<li class="toctree-l1 current active has-children"><a class="current reference internal" href="#">Julia の基本文法</a><ul>
+<li class="toctree-l1 has-children"><a class="reference internal" href="j_basic_intro.html">Julia の基本文法</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="j_basic_v.html">変数</a></li>
 <li class="toctree-l2"><a class="reference internal" href="j_basic_if.html">整数と浮動小数点</a></li>
-</ul><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary>
+</ul><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary>
 </details></li>
-<li class="toctree-l1 has-children"><a class="reference internal" href="j_ts_intro.html">型システム</a><ul>
+<li class="toctree-l1 current active has-children"><a class="current reference internal" href="#">型システム</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="j_nt.html">公称型システムとサブタイピング</a></li>
 <li class="toctree-l2"><a class="reference internal" href="j_pt.html">パラメトリック型</a></li>
-</ul><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary>
+</ul><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary>
 </details></li>
 <li class="toctree-l1 has-children"><a class="reference internal" href="j_plot_intro.html">グラフ描画</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="j_plot.html">Plots</a></li>
@@ -279,7 +277,7 @@
       
       
       
-      <li><a href="https://github.com/rice8y/Eypage/edit/main/docs/j_basic_intro.md" target="_blank"
+      <li><a href="https://github.com/rice8y/Eypage/edit/main/docs/j_ts_intro.md" target="_blank"
    class="btn btn-sm btn-source-edit-button dropdown-item"
    title="Suggest edit"
    data-bs-placement="left" data-bs-toggle="tooltip"
@@ -309,7 +307,7 @@
       
       
       
-      <li><a href="_sources/j_basic_intro.md" target="_blank"
+      <li><a href="_sources/j_ts_intro.md" target="_blank"
    class="btn btn-sm btn-download-source-button dropdown-item"
    title="Download source file"
    data-bs-placement="left" data-bs-toggle="tooltip"
@@ -391,7 +389,7 @@ document.write(`
               
 
 <div id="jb-print-docs-body" class="onlyprint">
-    <h1>Julia の基本文法</h1>
+    <h1>型システム</h1>
     <!-- Table of contents -->
     <div id="print-main-content">
         <div id="jb-print-toc">
@@ -405,12 +403,12 @@ document.write(`
 <div id="searchbox"></div>
                 <article class="bd-article">
                   
-  <section class="tex2jax_ignore mathjax_ignore" id="julia">
-<h1>Julia の基本文法<a class="headerlink" href="#julia" title="Link to this heading">#</a></h1>
+  <section class="tex2jax_ignore mathjax_ignore" id="id1">
+<h1>型システム<a class="headerlink" href="#id1" title="Link to this heading">#</a></h1>
 <div class="toctree-wrapper compound">
 <ul>
-<li class="toctree-l1"><a class="reference internal" href="j_basic_v.html">変数</a></li>
-<li class="toctree-l1"><a class="reference internal" href="j_basic_if.html">整数と浮動小数点</a></li>
+<li class="toctree-l1"><a class="reference internal" href="j_nt.html">公称型システムとサブタイピング</a></li>
+<li class="toctree-l1"><a class="reference internal" href="j_pt.html">パラメトリック型</a></li>
 </ul>
 </div>
 </section>
@@ -446,20 +444,20 @@ document.write(`
                   
 <div class="prev-next-area">
     <a class="left-prev"
-       href="j_intro.html"
+       href="j_basic_if.html"
        title="previous page">
       <i class="fa-solid fa-angle-left"></i>
       <div class="prev-next-info">
         <p class="prev-next-subtitle">previous</p>
-        <p class="prev-next-title">Julia の導入</p>
+        <p class="prev-next-title">整数と浮動小数点</p>
       </div>
     </a>
     <a class="right-next"
-       href="j_basic_v.html"
+       href="j_nt.html"
        title="next page">
       <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title">変数</p>
+        <p class="prev-next-title">公称型システムとサブタイピング</p>
       </div>
       <i class="fa-solid fa-angle-right"></i>
     </a>
