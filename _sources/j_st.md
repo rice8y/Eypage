@@ -382,7 +382,7 @@ IntegerParametricSingleton (alias for ParametricSingleton{T} where T<:Integer)
 
 ```
 
-上記の例のように, `const` 用いて定数として定義する.
+上記の例のように, `const` を用いて定数として定義する.
 
 ### 参考文献
 
