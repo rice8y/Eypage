@@ -406,6 +406,13 @@ document.write(`
                 <ul class="visible nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#tuple-namedtuple">Tuple 型・NamedTuple 型</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#union">Union 型</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">ボトム型</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id3">シングルトン型</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#type-t">Type{T} 型セレクタ</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id4">型エイリアス</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id5">参考文献</a></li>
+</ul>
+</li>
 </ul>
             </nav>
         </div>
@@ -575,6 +582,183 @@ document.write(`
 </section>
 <section id="union">
 <h2>Union 型<a class="headerlink" href="#union" title="Link to this heading">#</a></h2>
+<p>型パラメータに指定した型の和集合を表す型を Union 型という.</p>
+<div class="highlight-Julia notranslate"><div class="highlight"><pre><span></span><span class="n">julia</span><span class="o">&gt;</span><span class="w"> </span><span class="kt">Union</span><span class="p">{</span><span class="kt">Int</span><span class="p">,</span><span class="w"> </span><span class="kt">String</span><span class="p">}</span>
+<span class="kt">Union</span><span class="p">{</span><span class="kt">Int64</span><span class="p">,</span><span class="w"> </span><span class="kt">String</span><span class="p">}</span>
+
+<span class="n">julia</span><span class="o">&gt;</span><span class="w"> </span><span class="kt">Union</span><span class="p">{</span><span class="kt">Int</span><span class="p">,</span><span class="w"> </span><span class="kt">Float64</span><span class="p">,</span><span class="w"> </span><span class="kt">String</span><span class="p">}</span>
+<span class="kt">Union</span><span class="p">{</span><span class="kt">Float64</span><span class="p">,</span><span class="w"> </span><span class="kt">Int64</span><span class="p">,</span><span class="w"> </span><span class="kt">String</span><span class="p">}</span>
+
+<span class="n">julia</span><span class="o">&gt;</span><span class="w"> </span><span class="kt">Union</span><span class="p">{</span><span class="kt">Int</span><span class="p">,</span><span class="w"> </span><span class="kt">Integer</span><span class="p">}</span>
+<span class="kt">Integer</span>
+
+<span class="n">julia</span><span class="o">&gt;</span><span class="w"> </span><span class="kt">Union</span><span class="p">{</span><span class="kt">Int</span><span class="p">,</span><span class="w"> </span><span class="kt">Int</span><span class="p">}</span><span class="w"> </span><span class="o">===</span><span class="w"> </span><span class="kt">Union</span><span class="p">{</span><span class="kt">Int</span><span class="p">}</span><span class="w"> </span><span class="o">===</span><span class="w"> </span><span class="kt">Int</span>
+<span class="nb">true</span>
+</pre></div>
+</div>
+<p>上記の例より, サブタイピング関係にない複数の型が指定された場合, 単純にそれらの和集合となり, サブタイピング関係がある複数の型が指定された場合, <code class="docutils literal notranslate"><span class="pre">Any</span></code> に近い方の基本型だけが残る. 例として, <code class="docutils literal notranslate"><span class="pre">A</span> <span class="pre">&lt;:</span> <span class="pre">B</span></code> ならば <code class="docutils literal notranslate"><span class="pre">Union{A,</span> <span class="pre">B}</span> <span class="pre">===</span> <span class="pre">B</span></code> となる.</p>
+<div class="highlight-Julia notranslate"><div class="highlight"><pre><span></span><span class="n">julia</span><span class="o">&gt;</span><span class="w"> </span><span class="n">isabstracttype</span><span class="p">(</span><span class="kt">Union</span><span class="p">{</span><span class="kt">Int</span><span class="p">,</span><span class="w"> </span><span class="kt">String</span><span class="p">})</span>
+<span class="nb">false</span>
+
+<span class="n">julia</span><span class="o">&gt;</span><span class="w"> </span><span class="n">isconcretetype</span><span class="p">(</span><span class="kt">Union</span><span class="p">{</span><span class="kt">Int</span><span class="p">,</span><span class="w"> </span><span class="kt">String</span><span class="p">})</span>
+<span class="nb">false</span>
+
+<span class="n">julia</span><span class="o">&gt;</span><span class="w"> </span><span class="n">supertype</span><span class="p">(</span><span class="kt">Union</span><span class="p">{</span><span class="kt">Int</span><span class="p">,</span><span class="w"> </span><span class="kt">String</span><span class="p">})</span>
+<span class="n">ERROR</span><span class="o">:</span><span class="w"> </span><span class="kt">MethodError</span><span class="o">:</span><span class="w"> </span><span class="n">no</span><span class="w"> </span><span class="n">method</span><span class="w"> </span><span class="n">matching</span><span class="w"> </span><span class="n">supertype</span><span class="p">(</span><span class="o">::</span><span class="kt">Type</span><span class="p">{</span><span class="kt">Union</span><span class="p">{</span><span class="kt">Int64</span><span class="p">,</span><span class="w"> </span><span class="kt">String</span><span class="p">}})</span>
+
+<span class="n">Closest</span><span class="w"> </span><span class="n">candidates</span><span class="w"> </span><span class="n">are</span><span class="o">:</span>
+<span class="w">  </span><span class="n">supertype</span><span class="p">(</span><span class="o">::</span><span class="kt">DataType</span><span class="p">)</span>
+<span class="w">   </span><span class="err">@</span><span class="w"> </span><span class="n">Base</span><span class="w"> </span><span class="n">operators</span><span class="o">.</span><span class="n">jl</span><span class="o">:</span><span class="mi">43</span>
+<span class="w">  </span><span class="n">supertype</span><span class="p">(</span><span class="o">::</span><span class="kt">UnionAll</span><span class="p">)</span>
+<span class="w">   </span><span class="err">@</span><span class="w"> </span><span class="n">Base</span><span class="w"> </span><span class="n">operators</span><span class="o">.</span><span class="n">jl</span><span class="o">:</span><span class="mi">44</span>
+
+<span class="n">Stacktrace</span><span class="o">:</span>
+<span class="w"> </span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="w"> </span><span class="n">top</span><span class="o">-</span><span class="n">level</span><span class="w"> </span><span class="n">scope</span>
+<span class="w">   </span><span class="err">@</span><span class="w"> </span><span class="n">REPL</span><span class="p">[</span><span class="mi">63</span><span class="p">]</span><span class="o">:</span><span class="mi">1</span>
+
+<span class="n">julia</span><span class="o">&gt;</span><span class="w"> </span><span class="n">subtypes</span><span class="p">(</span><span class="kt">Union</span><span class="p">{</span><span class="kt">Int</span><span class="p">,</span><span class="w"> </span><span class="kt">String</span><span class="p">})</span>
+<span class="kt">Type</span><span class="p">[]</span>
+
+<span class="n">julia</span><span class="o">&gt;</span><span class="w"> </span><span class="kt">Union</span><span class="p">{</span><span class="kt">Int</span><span class="p">,</span><span class="w"> </span><span class="kt">String</span><span class="p">}</span><span class="w"> </span><span class="o">&lt;:</span><span class="w"> </span><span class="kt">Any</span>
+<span class="nb">true</span>
+
+<span class="n">julia</span><span class="o">&gt;</span><span class="w"> </span><span class="kt">Int</span><span class="w"> </span><span class="o">&lt;:</span><span class="w"> </span><span class="kt">Union</span><span class="p">{</span><span class="kt">Int</span><span class="p">,</span><span class="w"> </span><span class="kt">String</span><span class="p">}</span>
+<span class="nb">true</span>
+
+<span class="n">julia</span><span class="o">&gt;</span><span class="w"> </span><span class="kt">String</span><span class="w"> </span><span class="o">&lt;:</span><span class="w"> </span><span class="kt">Union</span><span class="p">{</span><span class="kt">Int</span><span class="p">,</span><span class="w"> </span><span class="kt">String</span><span class="p">}</span>
+<span class="nb">true</span>
+
+<span class="n">julia</span><span class="o">&gt;</span><span class="w"> </span><span class="kt">Float64</span><span class="w"> </span><span class="o">&lt;:</span><span class="w"> </span><span class="kt">Union</span><span class="p">{</span><span class="kt">Int</span><span class="p">,</span><span class="w"> </span><span class="kt">String</span><span class="p">}</span>
+<span class="nb">false</span>
+
+<span class="n">julia</span><span class="o">&gt;</span><span class="w"> </span><span class="n">typeof</span><span class="p">(</span><span class="kt">Union</span><span class="p">{</span><span class="kt">Int</span><span class="p">,</span><span class="w"> </span><span class="kt">String</span><span class="p">})</span>
+<span class="kt">Union</span>
+</pre></div>
+</div>
+<p>上記の例より, <code class="docutils literal notranslate"><span class="pre">Union</span></code> は抽象型でもなく具象型でもない. また, 公称的派生型は存在しない. なお, <code class="docutils literal notranslate"><span class="pre">supertype(Union{Int,</span> <span class="pre">String})</span></code> でエラーが発生したのは, <code class="docutils literal notranslate"><span class="pre">supertype()</span></code> が公称的基本型を返す関数であるためである. 具体的には, <code class="docutils literal notranslate"><span class="pre">supertype()</span></code> は型定義時に <code class="docutils literal notranslate"><span class="pre">struct</span> <span class="pre">X</span> <span class="pre">&lt;:</span> <span class="pre">Y</span> <span class="pre">～</span> <span class="pre">end</span></code> 等のように定義した場合に, <code class="docutils literal notranslate"><span class="pre">supertype(X)</span> <span class="pre">===</span> <span class="pre">Y</span></code> となるものを返すが, そのように定義したものは <code class="docutils literal notranslate"><span class="pre">DataType</span></code> か <code class="docutils literal notranslate"><span class="pre">UnionAll</span></code> のいずれかしか存在しないため, エラーが発生したのである.</p>
+</section>
+<section id="id2">
+<h2>ボトム型<a class="headerlink" href="#id2" title="Link to this heading">#</a></h2>
+<div class="highlight-Julia notranslate"><div class="highlight"><pre><span></span><span class="n">julia</span><span class="o">&gt;</span><span class="w"> </span><span class="kt">Union</span><span class="p">{}</span>
+<span class="kt">Union</span><span class="p">{}</span>
+
+<span class="n">julia</span><span class="o">&gt;</span><span class="w"> </span><span class="n">typeof</span><span class="p">(</span><span class="kt">Union</span><span class="p">{})</span>
+<span class="n">Core</span><span class="o">.</span><span class="n">TypeofBottom</span>
+
+<span class="n">julia</span><span class="o">&gt;</span><span class="w"> </span><span class="kt">Union</span><span class="p">{}</span><span class="w"> </span><span class="o">&lt;:</span><span class="w"> </span><span class="kt">Int</span>
+<span class="nb">true</span>
+
+<span class="n">julia</span><span class="o">&gt;</span><span class="w"> </span><span class="n">all</span><span class="p">(</span><span class="kt">Union</span><span class="p">{}</span><span class="w"> </span><span class="o">&lt;:</span><span class="w"> </span><span class="kt">T</span><span class="w"> </span><span class="k">for</span><span class="w"> </span><span class="n">T</span><span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="p">(</span><span class="kt">Float64</span><span class="p">,</span><span class="w"> </span><span class="kt">String</span><span class="p">,</span><span class="w"> </span><span class="kt">Number</span><span class="p">,</span><span class="w"> </span><span class="kt">Any</span><span class="p">))</span>
+<span class="nb">true</span>
+</pre></div>
+</div>
+<p>上記の例より, <code class="docutils literal notranslate"><span class="pre">Union{}</span></code> は <code class="docutils literal notranslate"><span class="pre">Core.TypeofBottom</span></code> のインスタンスであることが分かる. また, <code class="docutils literal notranslate"><span class="pre">Union{}</span></code> は全ての型の派生型である. ゆえに, ボトム型という. (対照的に, 全ての型の基本型である <code class="docutils literal notranslate"><span class="pre">Any</span></code> はトップ型ともいう. )</p>
+</section>
+<section id="id3">
+<h2>シングルトン型<a class="headerlink" href="#id3" title="Link to this heading">#</a></h2>
+<p>ある型 <code class="docutils literal notranslate"><span class="pre">T</span></code> に対して <code class="docutils literal notranslate"><span class="pre">a</span> <span class="pre">isa</span> <span class="pre">T</span></code> かつ <code class="docutils literal notranslate"><span class="pre">b</span> <span class="pre">isa</span> <span class="pre">T</span></code> であるような <code class="docutils literal notranslate"><span class="pre">a</span></code>, <code class="docutils literal notranslate"><span class="pre">b</span></code> がある際に必ず <code class="docutils literal notranslate"><span class="pre">a</span> <span class="pre">==</span> <span class="pre">b</span></code> つまり <code class="docutils literal notranslate"><span class="pre">a</span></code> と <code class="docutils literal notranslate"><span class="pre">b</span></code> がオブジェクトレベルで同一レベルとなるなら, <code class="docutils literal notranslate"><span class="pre">a(b)</span></code> は型 <code class="docutils literal notranslate"><span class="pre">T</span></code> のシングルトンであるという. また, この時の型 <code class="docutils literal notranslate"><span class="pre">T</span></code> をシングルトン型という.</p>
+<div class="highlight-Julia notranslate"><div class="highlight"><pre><span></span><span class="n">julia</span><span class="o">&gt;</span><span class="w"> </span><span class="k">struct</span> <span class="kt">MySingleton</span><span class="w"> </span><span class="k">end</span>
+
+<span class="n">julia</span><span class="o">&gt;</span><span class="w"> </span><span class="n">a</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">MySingleton</span><span class="p">()</span>
+<span class="n">MySingleton</span><span class="p">()</span>
+
+<span class="n">julia</span><span class="o">&gt;</span><span class="w"> </span><span class="n">b</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">MySingleton</span><span class="p">()</span>
+<span class="n">MySingleton</span><span class="p">()</span>
+
+<span class="n">julia</span><span class="o">&gt;</span><span class="w"> </span><span class="n">Base</span><span class="o">.</span><span class="n">issingletontype</span><span class="p">(</span><span class="n">MySingleton</span><span class="p">)</span>
+<span class="nb">true</span>
+</pre></div>
+</div>
+<p>上記の例より, フィールドのない構造体を定義すると, それはシングルトン型となり, そのインスタンスは一意に定まっていることが分かる. また, シングルトン型かどうかを確認する関数として <code class="docutils literal notranslate"><span class="pre">Base.issingleton()</span></code> が存在する.</p>
+<p>パラメトリック型のシングルトン型は以下のようになる.</p>
+<div class="highlight-Julia notranslate"><div class="highlight"><pre><span></span><span class="n">julia</span><span class="o">&gt;</span><span class="w"> </span><span class="n">Base</span><span class="o">.</span><span class="n">issingletontype</span><span class="p">(</span><span class="kt">ParametricSingleton</span><span class="p">{})</span>
+<span class="nb">false</span>
+
+<span class="n">julia</span><span class="o">&gt;</span><span class="w"> </span><span class="n">Base</span><span class="o">.</span><span class="n">issingletontype</span><span class="p">(</span><span class="kt">ParametricSingleton</span><span class="p">{</span><span class="kt">Int</span><span class="p">})</span>
+<span class="nb">true</span>
+
+<span class="n">julia</span><span class="o">&gt;</span><span class="w"> </span><span class="n">all</span><span class="p">((</span><span class="kt">ParametricSingleton</span><span class="p">{</span><span class="kt">T</span><span class="p">}()</span><span class="w"> </span><span class="o">===</span><span class="w"> </span><span class="kt">ParametricSingleton</span><span class="p">{</span><span class="kt">T</span><span class="p">}()</span><span class="w"> </span><span class="k">for</span><span class="w"> </span><span class="n">T</span><span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="p">(</span><span class="kt">Int</span><span class="p">,</span><span class="w"> </span><span class="kt">Float64</span><span class="p">,</span><span class="w"> </span><span class="kt">String</span><span class="p">)))</span>
+<span class="nb">true</span>
+</pre></div>
+</div>
+<p>上記の例より, 型パラメータが指定されていない場合はシングルトン型ではないが, 型パラメータが指定されている場合はシングルトン型であることが分かる. また, 型パラメータを指定したもののインスタンスは一意に定まる.</p>
+<p>Julia には標準で定義されているシングルトン型も存在する.</p>
+<div class="highlight-Julia notranslate"><div class="highlight"><pre><span></span><span class="n">julia</span><span class="o">&gt;</span><span class="w"> </span><span class="n">Base</span><span class="o">.</span><span class="n">issingletontype</span><span class="p">(</span><span class="kt">Nothing</span><span class="p">)</span>
+<span class="nb">true</span>
+
+<span class="n">julia</span><span class="o">&gt;</span><span class="w"> </span><span class="kt">Nothing</span><span class="p">()</span><span class="w"> </span><span class="o">===</span><span class="w"> </span><span class="nb">nothing</span>
+<span class="nb">true</span>
+
+<span class="n">julia</span><span class="o">&gt;</span><span class="w"> </span><span class="n">Base</span><span class="o">.</span><span class="n">issingletontype</span><span class="p">(</span><span class="kt">Missing</span><span class="p">)</span>
+<span class="nb">true</span>
+
+<span class="n">julia</span><span class="o">&gt;</span><span class="w"> </span><span class="kt">Missing</span><span class="p">()</span><span class="w"> </span><span class="o">===</span><span class="w"> </span><span class="nb">missing</span>
+<span class="nb">true</span>
+</pre></div>
+</div>
+</section>
+<section id="type-t">
+<h2>Type{T} 型セレクタ<a class="headerlink" href="#type-t" title="Link to this heading">#</a></h2>
+<p>ある型 <code class="docutils literal notranslate"><span class="pre">T</span></code> に対して <code class="docutils literal notranslate"><span class="pre">typeof(T)</span></code> とすると, <code class="docutils literal notranslate"><span class="pre">DataType</span></code>, <code class="docutils literal notranslate"><span class="pre">UnionAll</span></code>, <code class="docutils literal notranslate"><span class="pre">Union</span></code> のいずれかが返ってくる. これらは, <code class="docutils literal notranslate"><span class="pre">Type</span></code> の派生型である.</p>
+<div class="highlight-Julia notranslate"><div class="highlight"><pre><span></span><span class="n">julia</span><span class="o">&gt;</span><span class="w"> </span><span class="n">subtypes</span><span class="p">(</span><span class="kt">Type</span><span class="p">)</span>
+<span class="mi">4</span><span class="o">-</span><span class="n">element</span><span class="w"> </span><span class="kt">Vector</span><span class="p">{</span><span class="kt">Any</span><span class="p">}</span><span class="o">:</span>
+<span class="w"> </span><span class="n">Core</span><span class="o">.</span><span class="n">TypeofBottom</span>
+<span class="w"> </span><span class="kt">DataType</span>
+<span class="w"> </span><span class="kt">Union</span>
+<span class="w"> </span><span class="kt">UnionAll</span>
+</pre></div>
+</div>
+<div class="highlight-Julia notranslate"><div class="highlight"><pre><span></span><span class="n">julia</span><span class="o">&gt;</span><span class="w"> </span><span class="n">typeof</span><span class="p">(</span><span class="kt">Type</span><span class="p">)</span>
+<span class="kt">UnionAll</span>
+
+<span class="n">julia</span><span class="o">&gt;</span><span class="w"> </span><span class="n">typeof</span><span class="p">(</span><span class="kt">Type</span><span class="p">{</span><span class="kt">Int</span><span class="p">})</span>
+<span class="kt">DataType</span>
+
+<span class="n">julia</span><span class="o">&gt;</span><span class="w"> </span><span class="kt">Int</span><span class="w"> </span><span class="k">isa</span><span class="w"> </span><span class="kt">Type</span><span class="p">{</span><span class="kt">Int</span><span class="p">}</span>
+<span class="nb">true</span>
+
+<span class="n">julia</span><span class="o">&gt;</span><span class="w"> </span><span class="kt">Float64</span><span class="w"> </span><span class="k">isa</span><span class="w"> </span><span class="kt">Type</span><span class="p">{</span><span class="kt">Int</span><span class="p">}</span>
+<span class="nb">false</span>
+
+<span class="n">julia</span><span class="o">&gt;</span><span class="w"> </span><span class="n">all</span><span class="p">(</span><span class="n">T</span><span class="w"> </span><span class="k">isa</span><span class="w"> </span><span class="kt">Type</span><span class="p">{</span><span class="kt">T</span><span class="p">}</span><span class="w"> </span><span class="k">for</span><span class="w"> </span><span class="n">T</span><span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="p">(</span><span class="kt">Float64</span><span class="p">,</span><span class="w"> </span><span class="kt">String</span><span class="p">,</span><span class="w"> </span><span class="kt">Any</span><span class="p">))</span>
+<span class="nb">true</span>
+
+<span class="n">julia</span><span class="o">&gt;</span><span class="w"> </span><span class="n">all</span><span class="p">(</span><span class="n">T</span><span class="w"> </span><span class="k">isa</span><span class="w"> </span><span class="kt">Type</span><span class="p">{</span><span class="o">&lt;:</span><span class="kt">Real</span><span class="p">}</span><span class="w"> </span><span class="k">for</span><span class="w"> </span><span class="n">T</span><span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="p">(</span><span class="kt">Int</span><span class="p">,</span><span class="w"> </span><span class="kt">Float64</span><span class="p">,</span><span class="w"> </span><span class="kt">Signed</span><span class="p">,</span><span class="w"> </span><span class="kt">AbstractFloat</span><span class="p">))</span>
+<span class="nb">true</span>
+</pre></div>
+</div>
+<p><code class="docutils literal notranslate"><span class="pre">Type</span></code> はパラメトリック型であり, 型パラメータを指定していない場合 <code class="docutils literal notranslate"><span class="pre">UnionAll</span></code>, 型パラメータを指定している場合 <code class="docutils literal notranslate"><span class="pre">DataType</span></code> となる. また, 型 <code class="docutils literal notranslate"><span class="pre">T</span></code> を型パラメータに指定すると, <code class="docutils literal notranslate"><span class="pre">T</span> <span class="pre">isa</span> <span class="pre">Type{T}</span></code> は <code class="docutils literal notranslate"><span class="pre">true</span></code> になるが, 型パラメータとして指定した型と <code class="docutils literal notranslate"><span class="pre">T</span></code> の型が異なれば, <code class="docutils literal notranslate"><span class="pre">T</span> <span class="pre">isa</span> <span class="pre">Type{T}</span></code> は <code class="docutils literal notranslate"><span class="pre">false</span></code> となる. ただし, 型制約を指定した場合, 例として <code class="docutils literal notranslate"><span class="pre">A</span> <span class="pre">&lt;:</span> <span class="pre">B</span></code> ならば <code class="docutils literal notranslate"><span class="pre">A</span> <span class="pre">isa</span> <span class="pre">Type{&lt;:B}</span></code> は <code class="docutils literal notranslate"><span class="pre">true</span></code> となる. このような <code class="docutils literal notranslate"><span class="pre">Type{T}</span></code> を型 <code class="docutils literal notranslate"><span class="pre">T</span></code> の型セレクタという.</p>
+</section>
+<section id="id4">
+<h2>型エイリアス<a class="headerlink" href="#id4" title="Link to this heading">#</a></h2>
+<p>型には別名を付けることができ, これを, 型エイリアスという. 型エイリアスの例を以下に示す.</p>
+<div class="highlight-Julia notranslate"><div class="highlight"><pre><span></span><span class="n">julia</span><span class="o">&gt;</span><span class="w"> </span><span class="n">typeof</span><span class="p">(</span><span class="mf">1.0</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mf">1.0</span><span class="nb">im</span><span class="p">)</span>
+<span class="kt">ComplexF64</span><span class="w"> </span><span class="p">(</span><span class="n">alias</span><span class="w"> </span><span class="k">for</span><span class="w"> </span><span class="kt">Complex</span><span class="p">{</span><span class="kt">Float64</span><span class="p">})</span>
+
+<span class="n">julia</span><span class="o">&gt;</span><span class="w"> </span><span class="n">typeof</span><span class="p">([</span><span class="mf">1.</span><span class="w"> </span><span class="mf">2.</span><span class="p">;</span><span class="w"> </span><span class="mf">3.</span><span class="w"> </span><span class="mf">4.</span><span class="p">])</span>
+<span class="kt">Matrix</span><span class="p">{</span><span class="kt">Float64</span><span class="p">}</span><span class="w"> </span><span class="p">(</span><span class="n">alias</span><span class="w"> </span><span class="k">for</span><span class="w"> </span><span class="kt">Array</span><span class="p">{</span><span class="kt">Float64</span><span class="p">,</span><span class="w"> </span><span class="mi">2</span><span class="p">})</span>
+
+<span class="n">julia</span><span class="o">&gt;</span><span class="w"> </span><span class="kt">Vector</span>
+<span class="kt">Vector</span><span class="w"> </span><span class="p">(</span><span class="n">alias</span><span class="w"> </span><span class="k">for</span><span class="w"> </span><span class="kt">Array</span><span class="p">{</span><span class="kt">T</span><span class="p">,</span><span class="w"> </span><span class="mi">1</span><span class="p">}</span><span class="w"> </span><span class="k">where</span><span class="w"> </span><span class="kt">T</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>なお, 型エイリアスはユーザ定義可能である.</p>
+<div class="highlight-Julia notranslate"><div class="highlight"><pre><span></span><span class="n">julia</span><span class="o">&gt;</span><span class="w"> </span><span class="k">struct</span> <span class="kt">ParametricSingleton</span><span class="p">{</span><span class="kt">T</span><span class="p">}</span><span class="w"> </span><span class="k">end</span>
+
+<span class="n">julia</span><span class="o">&gt;</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="n">IntParametricSingleton</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kt">ParametricSingleton</span><span class="p">{</span><span class="kt">Int</span><span class="p">}</span>
+<span class="n">IntParametricSingleton</span><span class="w"> </span><span class="p">(</span><span class="n">alias</span><span class="w"> </span><span class="k">for</span><span class="w"> </span><span class="kt">ParametricSingleton</span><span class="p">{</span><span class="kt">Int64</span><span class="p">})</span>
+
+<span class="n">julia</span><span class="o">&gt;</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="kt">IntegerParametricSingleton</span><span class="p">{</span><span class="kt">T</span><span class="o">&lt;:</span><span class="kt">Integer</span><span class="p">}</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kt">ParametricSingleton</span><span class="p">{</span><span class="kt">T</span><span class="p">}</span>
+<span class="n">IntegerParametricSingleton</span><span class="w"> </span><span class="p">(</span><span class="n">alias</span><span class="w"> </span><span class="k">for</span><span class="w"> </span><span class="kt">ParametricSingleton</span><span class="p">{</span><span class="kt">T</span><span class="p">}</span><span class="w"> </span><span class="k">where</span><span class="w"> </span><span class="kt">T</span><span class="o">&lt;:</span><span class="kt">Integer</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>上記の例のように, <code class="docutils literal notranslate"><span class="pre">const</span></code> 用いて定数として定義する.</p>
+<section id="id5">
+<h3>参考文献<a class="headerlink" href="#id5" title="Link to this heading">#</a></h3>
+<ul class="simple">
+<li><p>後藤俊介, &quot;実践Julia入門&quot;, 技術評論社, 2023. ISBN: 978-4-297-13350-4.</p></li>
+</ul>
+</section>
 </section>
 </section>
 
@@ -644,6 +828,13 @@ document.write(`
     <ul class="visible nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#tuple-namedtuple">Tuple 型・NamedTuple 型</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#union">Union 型</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">ボトム型</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id3">シングルトン型</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#type-t">Type{T} 型セレクタ</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id4">型エイリアス</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id5">参考文献</a></li>
+</ul>
+</li>
 </ul>
   </nav></div>
 

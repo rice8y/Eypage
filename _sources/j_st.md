@@ -184,3 +184,207 @@ false
 `NamedTuple` は抽象型でもなく具象型でもない. また, `NamedTuple` の公称的基本型は `Any` であり, 公称的派生型は存在しない. なお, `Tuple` に見られた共変は `NamedTuple` にはない.
 
 ## Union 型
+
+型パラメータに指定した型の和集合を表す型を Union 型という.
+
+```Julia
+julia> Union{Int, String}
+Union{Int64, String}
+
+julia> Union{Int, Float64, String}
+Union{Float64, Int64, String}
+
+julia> Union{Int, Integer}
+Integer
+
+julia> Union{Int, Int} === Union{Int} === Int
+true
+
+```
+
+上記の例より, サブタイピング関係にない複数の型が指定された場合, 単純にそれらの和集合となり, サブタイピング関係がある複数の型が指定された場合, `Any` に近い方の基本型だけが残る. 例として, `A <: B` ならば `Union{A, B} === B` となる.
+
+```Julia
+julia> isabstracttype(Union{Int, String})
+false
+
+julia> isconcretetype(Union{Int, String})
+false
+
+julia> supertype(Union{Int, String})
+ERROR: MethodError: no method matching supertype(::Type{Union{Int64, String}})
+
+Closest candidates are:
+  supertype(::DataType)
+   @ Base operators.jl:43
+  supertype(::UnionAll)
+   @ Base operators.jl:44
+
+Stacktrace:
+ [1] top-level scope
+   @ REPL[63]:1
+
+julia> subtypes(Union{Int, String})
+Type[]
+
+julia> Union{Int, String} <: Any
+true
+
+julia> Int <: Union{Int, String}
+true
+
+julia> String <: Union{Int, String}
+true
+
+julia> Float64 <: Union{Int, String}
+false
+
+julia> typeof(Union{Int, String})
+Union
+
+```
+
+上記の例より, `Union` は抽象型でもなく具象型でもない. また, 公称的派生型は存在しない. なお, `supertype(Union{Int, String})` でエラーが発生したのは, `supertype()` が公称的基本型を返す関数であるためである. 具体的には, `supertype()` は型定義時に `struct X <: Y ～ end` 等のように定義した場合に, `supertype(X) === Y` となるものを返すが, そのように定義したものは `DataType` か `UnionAll` のいずれかしか存在しないため, エラーが発生したのである.
+
+## ボトム型
+
+```Julia
+julia> Union{}
+Union{}
+
+julia> typeof(Union{})
+Core.TypeofBottom
+
+julia> Union{} <: Int
+true
+
+julia> all(Union{} <: T for T in (Float64, String, Number, Any))
+true
+
+```
+
+上記の例より, `Union{}` は `Core.TypeofBottom` のインスタンスであることが分かる. また, `Union{}` は全ての型の派生型である. ゆえに, ボトム型という. (対照的に, 全ての型の基本型である `Any` はトップ型ともいう. )
+
+## シングルトン型
+
+ある型 `T` に対して `a isa T` かつ `b isa T` であるような `a`, `b` がある際に必ず `a == b` つまり `a` と `b` がオブジェクトレベルで同一レベルとなるなら, `a(b)` は型 `T` のシングルトンであるという. また, この時の型 `T` をシングルトン型という.
+
+```Julia
+julia> struct MySingleton end
+
+julia> a = MySingleton()
+MySingleton()
+
+julia> b = MySingleton()
+MySingleton()
+
+julia> Base.issingletontype(MySingleton)
+true
+```
+
+上記の例より, フィールドのない構造体を定義すると, それはシングルトン型となり, そのインスタンスは一意に定まっていることが分かる. また, シングルトン型かどうかを確認する関数として `Base.issingleton()` が存在する.
+
+パラメトリック型のシングルトン型は以下のようになる.
+
+```Julia
+julia> Base.issingletontype(ParametricSingleton{})
+false
+
+julia> Base.issingletontype(ParametricSingleton{Int})
+true
+
+julia> all((ParametricSingleton{T}() === ParametricSingleton{T}() for T in (Int, Float64, String)))
+true
+
+```
+
+上記の例より, 型パラメータが指定されていない場合はシングルトン型ではないが, 型パラメータが指定されている場合はシングルトン型であることが分かる. また, 型パラメータを指定したもののインスタンスは一意に定まる.
+
+Julia には標準で定義されているシングルトン型も存在する.
+
+```Julia
+julia> Base.issingletontype(Nothing)
+true
+
+julia> Nothing() === nothing
+true
+
+julia> Base.issingletontype(Missing)
+true
+
+julia> Missing() === missing
+true
+```
+
+## Type{T} 型セレクタ
+
+ある型 `T` に対して `typeof(T)` とすると, `DataType`, `UnionAll`, `Union` のいずれかが返ってくる. これらは, `Type` の派生型である.
+
+```Julia
+julia> subtypes(Type)
+4-element Vector{Any}:
+ Core.TypeofBottom
+ DataType
+ Union
+ UnionAll
+
+```
+
+```Julia
+julia> typeof(Type)
+UnionAll
+
+julia> typeof(Type{Int})
+DataType
+
+julia> Int isa Type{Int}
+true
+
+julia> Float64 isa Type{Int}
+false
+
+julia> all(T isa Type{T} for T in (Float64, String, Any))
+true
+
+julia> all(T isa Type{<:Real} for T in (Int, Float64, Signed, AbstractFloat))
+true
+
+```
+
+`Type` はパラメトリック型であり, 型パラメータを指定していない場合 `UnionAll`, 型パラメータを指定している場合 `DataType` となる. また, 型 `T` を型パラメータに指定すると, `T isa Type{T}` は `true` になるが, 型パラメータとして指定した型と `T` の型が異なれば, `T isa Type{T}` は `false` となる. ただし, 型制約を指定した場合, 例として `A <: B` ならば `A isa Type{<:B}` は `true` となる. このような `Type{T}` を型 `T` の型セレクタという.
+
+## 型エイリアス
+
+型には別名を付けることができ, これを, 型エイリアスという. 型エイリアスの例を以下に示す.
+
+```Julia
+julia> typeof(1.0 + 1.0im)
+ComplexF64 (alias for Complex{Float64})
+
+julia> typeof([1. 2.; 3. 4.])
+Matrix{Float64} (alias for Array{Float64, 2})
+
+julia> Vector
+Vector (alias for Array{T, 1} where T)
+
+```
+
+なお, 型エイリアスはユーザ定義可能である.
+
+```Julia
+julia> struct ParametricSingleton{T} end
+
+julia> const IntParametricSingleton = ParametricSingleton{Int}
+IntParametricSingleton (alias for ParametricSingleton{Int64})
+
+julia> const IntegerParametricSingleton{T<:Integer} = ParametricSingleton{T}
+IntegerParametricSingleton (alias for ParametricSingleton{T} where T<:Integer)
+
+```
+
+上記の例のように, `const` 用いて定数として定義する.
+
+### 参考文献
+
+- 後藤俊介, "実践Julia入門", 技術評論社, 2023. ISBN: 978-4-297-13350-4.
+  
