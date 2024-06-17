@@ -1,4 +1,4 @@
-# iris dataset
+# Iris Dataset
 
 ## 準備
 
@@ -10,13 +10,13 @@ using Flux: params, Data.DataLoader
 using MLDataUtils: shuffleobs
 ```
 
-## iris データの読み込み
+## Iris データの読み込み
 
 ```Julia
 iris = dataset("datasets", "iris")
 ```
 
-まずは, iris データの構造を見てみる.
+まずは, Iris データの構造を見てみる.
 
 ```Julia
 julia> describe(iris, :all)
@@ -133,7 +133,6 @@ test_dl = DataLoader((x_test', y_test), batchsize=batch_size)
 
 - 入力：$h^{(2)}\in\mathbb{R}^{3}$
 - 出力：$\hat{y}=\mathrm{softmax}(h^{(2)})$
-<!-- - $\mathrm{softmax}(h^{(2)})_{i}=$ -->
 
 ```Julia
 model = Chain(

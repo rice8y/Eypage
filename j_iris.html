@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>iris dataset &#8212; Y&#39;s Page</title>
+    <title>Iris Dataset &#8212; Y&#39;s Page</title>
   
   
   
@@ -205,7 +205,7 @@
 </ul><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary>
 </details></li>
 <li class="toctree-l1 current active has-children"><a class="reference internal" href="j_ml_intro.html">機械学習</a><ul class="current">
-<li class="toctree-l2 current active"><a class="current reference internal" href="#">iris dataset</a></li>
+<li class="toctree-l2 current active"><a class="current reference internal" href="#">Iris Dataset</a></li>
 </ul><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary>
 </details></li>
 <li class="toctree-l1 has-children"><a class="reference internal" href="sp_intro.html">おまけ</a><ul>
@@ -399,7 +399,7 @@ document.write(`
               
 
 <div id="jb-print-docs-body" class="onlyprint">
-    <h1>iris dataset</h1>
+    <h1>Iris Dataset</h1>
     <!-- Table of contents -->
     <div id="print-main-content">
         <div id="jb-print-toc">
@@ -410,7 +410,7 @@ document.write(`
             <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">準備</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#iris">iris データの読み込み</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#iris">Iris データの読み込み</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">目的変数と説明変数の定義</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id3">訓練データとテストデータに分離</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#one-hot">One-Hot エンコーディング</a></li>
@@ -438,7 +438,7 @@ document.write(`
                 <article class="bd-article">
                   
   <section class="tex2jax_ignore mathjax_ignore" id="iris-dataset">
-<h1>iris dataset<a class="headerlink" href="#iris-dataset" title="Link to this heading">#</a></h1>
+<h1>Iris Dataset<a class="headerlink" href="#iris-dataset" title="Link to this heading">#</a></h1>
 <section id="id1">
 <h2>準備<a class="headerlink" href="#id1" title="Link to this heading">#</a></h2>
 <p>必要なパッケージを読み込む.</p>
@@ -449,11 +449,11 @@ document.write(`
 </div>
 </section>
 <section id="iris">
-<h2>iris データの読み込み<a class="headerlink" href="#iris" title="Link to this heading">#</a></h2>
+<h2>Iris データの読み込み<a class="headerlink" href="#iris" title="Link to this heading">#</a></h2>
 <div class="highlight-Julia notranslate"><div class="highlight"><pre><span></span><span class="n">iris</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">dataset</span><span class="p">(</span><span class="s">&quot;datasets&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;iris&quot;</span><span class="p">)</span>
 </pre></div>
 </div>
-<p>まずは, iris データの構造を見てみる.</p>
+<p>まずは, Iris データの構造を見てみる.</p>
 <div class="highlight-Julia notranslate"><div class="highlight"><pre><span></span><span class="n">julia</span><span class="o">&gt;</span><span class="w"> </span><span class="n">describe</span><span class="p">(</span><span class="n">iris</span><span class="p">,</span><span class="w"> </span><span class="ss">:all</span><span class="p">)</span>
 <span class="mi">5</span><span class="o">×</span><span class="mi">16</span><span class="w"> </span><span class="n">DataFrame</span>
 <span class="w"> </span><span class="n">Row</span><span class="w"> </span><span class="n">│</span><span class="w"> </span><span class="n">variable</span><span class="w">     </span><span class="n">mean</span><span class="w">     </span><span class="n">std</span><span class="w">       </span><span class="n">min</span><span class="w">     </span><span class="n">q25</span><span class="w">     </span><span class="n">median</span><span class="w">  </span><span class="n">q75</span><span class="w">     </span><span class="n">max</span><span class="w">        </span><span class="n">sum</span><span class="w">     </span><span class="n">nunique</span><span class="w">  </span><span class="n">nuniqueall</span><span class="w">  </span><span class="n">nmissing</span><span class="w">  </span><span class="n">nnonmissin</span><span class="w"> </span><span class="o">⋯</span>
@@ -555,7 +555,6 @@ document.write(`
 <li><p>入力：<span class="math notranslate nohighlight">\(h^{(2)}\in\mathbb{R}^{3}\)</span></p></li>
 <li><p>出力：<span class="math notranslate nohighlight">\(\hat{y}=\mathrm{softmax}(h^{(2)})\)</span></p></li>
 </ul>
-<!-- - $\mathrm{softmax}(h^{(2)})_{i}=$ -->
 <div class="highlight-Julia notranslate"><div class="highlight"><pre><span></span><span class="n">model</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Chain</span><span class="p">(</span>
 <span class="w">    </span><span class="n">Dense</span><span class="p">(</span><span class="mi">4</span><span class="p">,</span><span class="w"> </span><span class="mi">32</span><span class="p">,</span><span class="w"> </span><span class="n">relu</span><span class="p">),</span>
 <span class="w">    </span><span class="n">Dense</span><span class="p">(</span><span class="mi">32</span><span class="p">,</span><span class="w"> </span><span class="mi">3</span><span class="p">),</span>
@@ -767,7 +766,7 @@ L(x, y) = -\sum_{i=1}^{3}y_{i}\log (\hat{y}_{i})
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">準備</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#iris">iris データの読み込み</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#iris">Iris データの読み込み</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">目的変数と説明変数の定義</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id3">訓練データとテストデータに分離</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#one-hot">One-Hot エンコーディング</a></li>
