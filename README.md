@@ -1,3 +1,3 @@
-# 忘備録
+# Julia 忘備録
 
-[Click](https://rice8y.github.io/Eypage/)
+Click on [https://rice8y.github.io/Eypage/](https://rice8y.github.io/Eypage/)
