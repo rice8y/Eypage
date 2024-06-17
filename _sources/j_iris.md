@@ -292,3 +292,8 @@ julia> ConfusionMatrices.confmat(truth, pred)
 **Accuracy：**
 
 ![result acc](_images/iris_acc.png)
+
+### 参考文献
+
+- Luke Floden, "Deep learning on "the iris data-set" in Julia", DEV, 2020-11-10, [https://dev.to/bionboy/deep-learning-on-the-iris-data-set-in-julia-3pbe](https://dev.to/bionboy/deep-learning-on-the-iris-data-set-in-julia-3pbe), (2024-06-17 参照).
+  
