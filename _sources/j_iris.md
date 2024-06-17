@@ -1,4 +1,4 @@
-# iris
+# iris dataset
 
 ## 準備
 
@@ -120,13 +120,13 @@ test_dl = DataLoader((x_test', y_test), batchsize=batch_size)
 **入力層：**
 
 - 入力：$x\in\mathbb{R}^{4}$
-- 出力：$h^{(1)}=\mathrm{ReLU}(\bm{W}^{(1)}+b^{(1)}), \quad \bm{W}^{(1)},\, b^{(1)}\in\mathbb{R}^{32}$
+- 出力：$h^{(1)}=\mathrm{ReLU}(\mathbf{W}^{(1)}+b^{(1)}), \quad \mathbf{W}^{(1)},\, b^{(1)}\in\mathbb{R}^{32}$
 - 活性化関数：$\mathrm{ReLU}(z)=\max(0,z)$
   
 **中間層：**
 
 - 入力：$h^{(1)}\in\mathbb{R}^{32}$
-- 出力：$h^{(2)}=\bm{W}^{(2)}h^{(1)}+b^{(2)}, \quad \bm{W}^{(2)}\in\mathbb{R}^{3\times32},\, b^{(2)}\in\mathbb{R}^{3}$
+- 出力：$h^{(2)}=\mathbf{W}^{(2)}h^{(1)}+b^{(2)}, \quad \mathbf{W}^{(2)}\in\mathbb{R}^{3\times32},\, b^{(2)}\in\mathbb{R}^{3}$
 - 活性化関数：なし
   
 **出力層：**
