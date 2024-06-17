@@ -58,6 +58,8 @@
     <script async="async" src="_static/sphinx-thebe.js?v=c100c467"></script>
     <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
     <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <script>DOCUMENTATION_OPTIONS.pagename = 'j_basic_lt';</script>
     <link rel="canonical" href="https://rice8y.github.io/Eypage/j_basic_lt.html" />
     <link rel="icon" href="_static/icon.png"/>
@@ -434,7 +436,7 @@ document.write(`
 <div id="searchbox"></div>
                 <article class="bd-article">
                   
-  <section id="id1">
+  <section class="tex2jax_ignore mathjax_ignore" id="id1">
 <h1>リテラル<a class="headerlink" href="#id1" title="Link to this heading">#</a></h1>
 <section id="id2">
 <h2>数値リテラル<a class="headerlink" href="#id2" title="Link to this heading">#</a></h2>
@@ -497,74 +499,74 @@ document.write(`
 </thead>
 <tbody>
 <tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">Int8</span></code></p></td>
-<td><p>$\checkmark$</p></td>
-<td><p>$8$</p></td>
-<td><p>$-2^{7}$</p></td>
-<td><p>$2^{7}-1$</p></td>
+<td><p><span class="math notranslate nohighlight">\(\checkmark\)</span></p></td>
+<td><p><span class="math notranslate nohighlight">\(8\)</span></p></td>
+<td><p><span class="math notranslate nohighlight">\(-2^{7}\)</span></p></td>
+<td><p><span class="math notranslate nohighlight">\(2^{7}-1\)</span></p></td>
 </tr>
 <tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">UInt8</span></code></p></td>
 <td><p></p></td>
-<td><p>$8$</p></td>
-<td><p>$0$</p></td>
-<td><p>$2^{8}-1$</p></td>
+<td><p><span class="math notranslate nohighlight">\(8\)</span></p></td>
+<td><p><span class="math notranslate nohighlight">\(0\)</span></p></td>
+<td><p><span class="math notranslate nohighlight">\(2^{8}-1\)</span></p></td>
 </tr>
 <tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">Int16</span></code></p></td>
-<td><p>$\checkmark$</p></td>
-<td><p>$16$</p></td>
-<td><p>$-2^{15}$</p></td>
-<td><p>$2^{15}-1$</p></td>
+<td><p><span class="math notranslate nohighlight">\(\checkmark\)</span></p></td>
+<td><p><span class="math notranslate nohighlight">\(16\)</span></p></td>
+<td><p><span class="math notranslate nohighlight">\(-2^{15}\)</span></p></td>
+<td><p><span class="math notranslate nohighlight">\(2^{15}-1\)</span></p></td>
 </tr>
 <tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">Int16</span></code></p></td>
 <td><p></p></td>
-<td><p>$16$</p></td>
-<td><p>$0$</p></td>
-<td><p>$2^{16}-1$</p></td>
+<td><p><span class="math notranslate nohighlight">\(16\)</span></p></td>
+<td><p><span class="math notranslate nohighlight">\(0\)</span></p></td>
+<td><p><span class="math notranslate nohighlight">\(2^{16}-1\)</span></p></td>
 </tr>
 <tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">Int32</span></code></p></td>
-<td><p>$\checkmark$</p></td>
-<td><p>$32$</p></td>
-<td><p>$-2^{31}$</p></td>
-<td><p>$2^{31}-1$</p></td>
+<td><p><span class="math notranslate nohighlight">\(\checkmark\)</span></p></td>
+<td><p><span class="math notranslate nohighlight">\(32\)</span></p></td>
+<td><p><span class="math notranslate nohighlight">\(-2^{31}\)</span></p></td>
+<td><p><span class="math notranslate nohighlight">\(2^{31}-1\)</span></p></td>
 </tr>
 <tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">UInt32</span></code></p></td>
 <td><p></p></td>
-<td><p>$32$</p></td>
-<td><p>$0$</p></td>
-<td><p>$2^{32}-1$</p></td>
+<td><p><span class="math notranslate nohighlight">\(32\)</span></p></td>
+<td><p><span class="math notranslate nohighlight">\(0\)</span></p></td>
+<td><p><span class="math notranslate nohighlight">\(2^{32}-1\)</span></p></td>
 </tr>
 <tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">Int64</span></code></p></td>
-<td><p>$\checkmark$</p></td>
-<td><p>$64$</p></td>
-<td><p>$-2^{63}$</p></td>
-<td><p>$2^{63}-1$</p></td>
+<td><p><span class="math notranslate nohighlight">\(\checkmark\)</span></p></td>
+<td><p><span class="math notranslate nohighlight">\(64\)</span></p></td>
+<td><p><span class="math notranslate nohighlight">\(-2^{63}\)</span></p></td>
+<td><p><span class="math notranslate nohighlight">\(2^{63}-1\)</span></p></td>
 </tr>
 <tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">UInt64</span></code></p></td>
 <td><p></p></td>
-<td><p>$64$</p></td>
-<td><p>$0$</p></td>
-<td><p>$2^{64}-1$</p></td>
+<td><p><span class="math notranslate nohighlight">\(64\)</span></p></td>
+<td><p><span class="math notranslate nohighlight">\(0\)</span></p></td>
+<td><p><span class="math notranslate nohighlight">\(2^{64}-1\)</span></p></td>
 </tr>
 <tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">Int128</span></code></p></td>
-<td><p>$\checkmark$</p></td>
-<td><p>$128$</p></td>
-<td><p>$-2^{127}$</p></td>
-<td><p>$2^{127}-1$</p></td>
+<td><p><span class="math notranslate nohighlight">\(\checkmark\)</span></p></td>
+<td><p><span class="math notranslate nohighlight">\(128\)</span></p></td>
+<td><p><span class="math notranslate nohighlight">\(-2^{127}\)</span></p></td>
+<td><p><span class="math notranslate nohighlight">\(2^{127}-1\)</span></p></td>
 </tr>
 <tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">UInt128</span></code></p></td>
 <td><p></p></td>
-<td><p>$128$</p></td>
-<td><p>$0$</p></td>
-<td><p>$2^{128}-1$</p></td>
+<td><p><span class="math notranslate nohighlight">\(128\)</span></p></td>
+<td><p><span class="math notranslate nohighlight">\(0\)</span></p></td>
+<td><p><span class="math notranslate nohighlight">\(2^{128}-1\)</span></p></td>
 </tr>
 <tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">Bool</span></code></p></td>
-<td><p>$\mathrm{N/A}$</p></td>
-<td><p>$8$</p></td>
-<td><p><code class="docutils literal notranslate"><span class="pre">false</span></code> $(0)$</p></td>
-<td><p><code class="docutils literal notranslate"><span class="pre">true</span></code> $(1)$</p></td>
+<td><p><span class="math notranslate nohighlight">\(\mathrm{N/A}\)</span></p></td>
+<td><p><span class="math notranslate nohighlight">\(8\)</span></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">false</span></code> <span class="math notranslate nohighlight">\((0)\)</span></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">true</span></code> <span class="math notranslate nohighlight">\((1)\)</span></p></td>
 </tr>
 <tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">Char</span></code></p></td>
 <td><p></p></td>
-<td><p>$32$</p></td>
+<td><p><span class="math notranslate nohighlight">\(32\)</span></p></td>
 <td><p><code class="docutils literal notranslate"><span class="pre">U+e0000</span></code></p></td>
 <td><p><code class="docutils literal notranslate"><span class="pre">U+10ffff</span></code></p></td>
 </tr>
@@ -612,15 +614,15 @@ document.write(`
 <tbody>
 <tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">Float16</span></code></p></td>
 <td><p>半精度</p></td>
-<td><p>$16$</p></td>
+<td><p><span class="math notranslate nohighlight">\(16\)</span></p></td>
 </tr>
 <tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">Float32</span></code></p></td>
 <td><p>単精度</p></td>
-<td><p>$32$</p></td>
+<td><p><span class="math notranslate nohighlight">\(32\)</span></p></td>
 </tr>
 <tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">Float64</span></code></p></td>
 <td><p>倍精度</p></td>
-<td><p>$64$</p></td>
+<td><p><span class="math notranslate nohighlight">\(64\)</span></p></td>
 </tr>
 </tbody>
 </table>
@@ -981,7 +983,7 @@ document.write(`
 <span class="w"> </span><span class="mi">7</span><span class="w">  </span><span class="mi">8</span>
 </pre></div>
 </div>
-<p>多次元配列の記述方法は, ベクトル (1次元配列) や行列 (2次元配列) と基本的には同じであるが, $n$ 連セミコロンで $n$ 次元配列を記述することができる点が異なる. 具体的には, <code class="docutils literal notranslate"><span class="pre">;</span></code> は第1軸方向の要素列挙, <code class="docutils literal notranslate"><span class="pre">;;</span></code> は第2軸方向の要素列挙, <code class="docutils literal notranslate"><span class="pre">;;;</span></code> は第3軸方向の要素列挙を示しており, これを拡張することで多次元配列を記述することが可能となる.</p>
+<p>多次元配列の記述方法は, ベクトル (1次元配列) や行列 (2次元配列) と基本的には同じであるが, <span class="math notranslate nohighlight">\(n\)</span> 連セミコロンで <span class="math notranslate nohighlight">\(n\)</span> 次元配列を記述することができる点が異なる. 具体的には, <code class="docutils literal notranslate"><span class="pre">;</span></code> は第1軸方向の要素列挙, <code class="docutils literal notranslate"><span class="pre">;;</span></code> は第2軸方向の要素列挙, <code class="docutils literal notranslate"><span class="pre">;;;</span></code> は第3軸方向の要素列挙を示しており, これを拡張することで多次元配列を記述することが可能となる.</p>
 <p>ベクトル・行列の結合例を以下に示す.</p>
 <div class="highlight-Julia notranslate"><div class="highlight"><pre><span></span><span class="n">julia</span><span class="o">&gt;</span><span class="w"> </span><span class="p">[[</span><span class="mi">1</span><span class="w"> </span><span class="mi">2</span><span class="w"> </span><span class="mi">3</span><span class="p">];[</span><span class="mi">4</span><span class="w"> </span><span class="mi">5</span><span class="w"> </span><span class="mi">6</span><span class="p">]]</span>
 <span class="mi">2</span><span class="o">×</span><span class="mi">3</span><span class="w"> </span><span class="kt">Matrix</span><span class="p">{</span><span class="kt">Int64</span><span class="p">}</span><span class="o">:</span>

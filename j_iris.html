@@ -58,7 +58,8 @@
     <script async="async" src="_static/sphinx-thebe.js?v=c100c467"></script>
     <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
     <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
-    <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <script>DOCUMENTATION_OPTIONS.pagename = 'j_iris';</script>
     <link rel="canonical" href="https://rice8y.github.io/Eypage/j_iris.html" />
     <link rel="icon" href="_static/icon.png"/>
@@ -436,7 +437,7 @@ document.write(`
 <div id="searchbox"></div>
                 <article class="bd-article">
                   
-  <section id="iris">
+  <section class="tex2jax_ignore mathjax_ignore" id="iris">
 <h1>iris<a class="headerlink" href="#iris" title="Link to this heading">#</a></h1>
 <section id="id1">
 <h2>準備<a class="headerlink" href="#id1" title="Link to this heading">#</a></h2>
@@ -539,20 +540,20 @@ document.write(`
 <h2>モデル定義<a class="headerlink" href="#id6" title="Link to this heading">#</a></h2>
 <p><strong>入力層：</strong></p>
 <ul class="simple">
-<li><p>入力：$x\in\mathbb{R}^{4}$</p></li>
-<li><p>出力：$h^{(1)}=\mathrm{ReLU}(\bm{W}^{(1)}+b^{(1)}), \quad \bm{W}^{(1)},, b^{(1)}\in\mathbb{R}^{32}$</p></li>
-<li><p>活性化関数：$\mathrm{ReLU}(z)=\max(0,z)$</p></li>
+<li><p>入力：<span class="math notranslate nohighlight">\(x\in\mathbb{R}^{4}\)</span></p></li>
+<li><p>出力：<span class="math notranslate nohighlight">\(h^{(1)}=\mathrm{ReLU}(\bm{W}^{(1)}+b^{(1)}), \quad \bm{W}^{(1)},\, b^{(1)}\in\mathbb{R}^{32}\)</span></p></li>
+<li><p>活性化関数：<span class="math notranslate nohighlight">\(\mathrm{ReLU}(z)=\max(0,z)\)</span></p></li>
 </ul>
 <p><strong>中間層：</strong></p>
 <ul class="simple">
-<li><p>入力：$h^{(1)}\in\mathbb{R}^{32}$</p></li>
-<li><p>出力：$h^{(2)}=\bm{W}^{(2)}h^{(1)}+b^{(2)}, \quad \bm{W}^{(2)}\in\mathbb{R}^{3\times32},, b^{(2)}\in\mathbb{R}^{3}$</p></li>
+<li><p>入力：<span class="math notranslate nohighlight">\(h^{(1)}\in\mathbb{R}^{32}\)</span></p></li>
+<li><p>出力：<span class="math notranslate nohighlight">\(h^{(2)}=\bm{W}^{(2)}h^{(1)}+b^{(2)}, \quad \bm{W}^{(2)}\in\mathbb{R}^{3\times32},\, b^{(2)}\in\mathbb{R}^{3}\)</span></p></li>
 <li><p>活性化関数：なし</p></li>
 </ul>
 <p><strong>出力層：</strong></p>
 <ul class="simple">
-<li><p>入力：$h^{(2)}\in\mathbb{R}^{3}$</p></li>
-<li><p>出力：$\hat{y}=\mathrm{softmax}(h^{(2)})$</p></li>
+<li><p>入力：<span class="math notranslate nohighlight">\(h^{(2)}\in\mathbb{R}^{3}\)</span></p></li>
+<li><p>出力：<span class="math notranslate nohighlight">\(\hat{y}=\mathrm{softmax}(h^{(2)})\)</span></p></li>
 </ul>
 <!-- - $\mathrm{softmax}(h^{(2)})_{i}=$ -->
 <div class="highlight-Julia notranslate"><div class="highlight"><pre><span></span><span class="n">model</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Chain</span><span class="p">(</span>
@@ -567,12 +568,12 @@ document.write(`
 <h2>損失関数<a class="headerlink" href="#id7" title="Link to this heading">#</a></h2>
 <p>損失関数にはクロスエントロピーを利用する.</p>
 <p><strong>クロスエントロピー：</strong></p>
-<p>$$</p>
-<div class="amsmath math notranslate nohighlight">
-\[\begin{equation*}
+<div class="math notranslate nohighlight">
+\[
+\begin{equation*}
 L(x, y) = -\sum_{i=1}^{3}y_{i}\log (\hat{y}_{i})
-\end{equation*}\]</div>
-<p>$$</p>
+\end{equation*}
+\]</div>
 <div class="highlight-Julia notranslate"><div class="highlight"><pre><span></span><span class="n">loss</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="w"> </span><span class="n">y</span><span class="p">)</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Flux</span><span class="o">.</span><span class="n">crossentropy</span><span class="p">(</span><span class="n">model</span><span class="p">(</span><span class="n">x</span><span class="p">),</span><span class="w"> </span><span class="n">y</span><span class="p">)</span>
 
 <span class="n">train_losses</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[]</span>
@@ -586,12 +587,12 @@ L(x, y) = -\sum_{i=1}^{3}y_{i}\log (\hat{y}_{i})
 <h2>最適化手法<a class="headerlink" href="#id8" title="Link to this heading">#</a></h2>
 <p>ここでは, 最適化手法として ADAM を選択する.</p>
 <p><strong>ADAM：</strong></p>
-<p>$$</p>
-<div class="amsmath math notranslate nohighlight">
-\[\begin{equation*}
+<div class="math notranslate nohighlight">
+\[
+\begin{equation*}
 \theta_{t+1} = \theta_{t} - \eta\dfrac{\hat{m}_{t}}{\sqrt{\hat{u}_{t}}+\varepsilon}
-\end{equation*}\]</div>
-<p>$$</p>
+\end{equation*}
+\]</div>
 <div class="highlight-Julia notranslate"><div class="highlight"><pre><span></span><span class="n">lr</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">0.001</span>
 <span class="n">opt</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">ADAM</span><span class="p">(</span><span class="n">lr</span><span class="p">,</span><span class="w"> </span><span class="p">(</span><span class="mf">0.9</span><span class="p">,</span><span class="w"> </span><span class="mf">0.999</span><span class="p">))</span>
 </pre></div>
@@ -637,7 +638,7 @@ L(x, y) = -\sum_{i=1}^{3}y_{i}\log (\hat{y}_{i})
 <span class="n">println</span><span class="p">(</span><span class="s">&quot;Test Accuracy: </span><span class="si">$</span><span class="p">(</span><span class="n">acc</span><span class="p">(</span><span class="n">test_dl</span><span class="p">))</span><span class="s">&quot;</span><span class="p">)</span>
 </pre></div>
 </div>
-<p>例として, 周回数を $100$ としたときの結果を以下に示す.</p>
+<p>例として, 周回数を <span class="math notranslate nohighlight">\(100\)</span> としたときの結果を以下に示す.</p>
 <div class="highlight-Julia notranslate"><div class="highlight"><pre><span></span><span class="n">Train</span><span class="w"> </span><span class="n">Error</span><span class="o">:</span><span class="w"> </span><span class="mf">0.24635728</span>
 
 <span class="n">Test</span><span class="w"> </span><span class="n">Error</span><span class="o">:</span><span class="w"> </span><span class="mf">0.2152909</span>

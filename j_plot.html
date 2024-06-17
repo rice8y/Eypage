@@ -58,7 +58,8 @@
     <script async="async" src="_static/sphinx-thebe.js?v=c100c467"></script>
     <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
     <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
-    <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <script>DOCUMENTATION_OPTIONS.pagename = 'j_plot';</script>
     <link rel="canonical" href="https://rice8y.github.io/Eypage/j_plot.html" />
     <link rel="icon" href="_static/icon.png"/>
@@ -410,7 +411,7 @@ document.write(`
 <div id="searchbox"></div>
                 <article class="bd-article">
                   
-  <section id="plots">
+  <section class="tex2jax_ignore mathjax_ignore" id="plots">
 <h1>Plots<a class="headerlink" href="#plots" title="Link to this heading">#</a></h1>
 <p>Julia でグラフを描画する方法は複数あるが, ここでは Plots を扱う.</p>
 <p>まずは, Plots をインストールする.</p>
@@ -462,12 +463,12 @@ document.write(`
 <p>PyPlot は非推奨となったため, PythonPlot に移行した方がよさそう.</p>
 </div>
 <p>例として,</p>
-<p>$$</p>
-<div class="amsmath math notranslate nohighlight">
-\[\begin{equation*}
+<div class="math notranslate nohighlight">
+\[
+\begin{equation*}
 y=\sin x,\quad 0\leq x\leq2\pi
-\end{equation*}\]</div>
-<p>$$</p>
+\end{equation*}
+\]</div>
 <p>を各バックエンドで描画する.</p>
 <div class="pst-scrollable-table-container"><table class="table">
 <thead>

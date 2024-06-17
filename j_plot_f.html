@@ -58,6 +58,8 @@
     <script async="async" src="_static/sphinx-thebe.js?v=c100c467"></script>
     <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
     <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <script>DOCUMENTATION_OPTIONS.pagename = 'j_plot_f';</script>
     <link rel="canonical" href="https://rice8y.github.io/Eypage/j_plot_f.html" />
     <link rel="icon" href="_static/icon.png"/>
@@ -421,7 +423,7 @@ document.write(`
 <div id="searchbox"></div>
                 <article class="bd-article">
                   
-  <section id="plots">
+  <section class="tex2jax_ignore mathjax_ignore" id="plots">
 <h1>Plots によるグラフ描画<a class="headerlink" href="#plots" title="Link to this heading">#</a></h1>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
@@ -437,7 +439,7 @@ document.write(`
 </section>
 <section id="id2">
 <h2>グラフ描画の基礎<a class="headerlink" href="#id2" title="Link to this heading">#</a></h2>
-<p>例として, $y=\sin x$ を $0\leq x\leq\pi$ の範囲で描画する.</p>
+<p>例として, <span class="math notranslate nohighlight">\(y=\sin x\)</span> を <span class="math notranslate nohighlight">\(0\leq x\leq\pi\)</span> の範囲で描画する.</p>
 <div class="highlight-Julia notranslate"><div class="highlight"><pre><span></span><span class="n">x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="o">:</span><span class="mf">0.01</span><span class="o">:</span><span class="nb">π</span>
 <span class="n">y</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">sin</span><span class="o">.</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
 <span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="w"> </span><span class="n">y</span><span class="p">)</span>
@@ -451,7 +453,7 @@ document.write(`
 </pre></div>
 </div>
 <p><img alt="sampl02" src="_images/sample_plot02.png" /></p>
-<p><code class="docutils literal notranslate"><span class="pre">xlabel</span></code> , <code class="docutils literal notranslate"><span class="pre">ylabel</span></code> で $x$, $y$ 軸のラベルを設定する. <code class="docutils literal notranslate"><span class="pre">label</span></code> ではグラフのラベル, <code class="docutils literal notranslate"><span class="pre">title</span></code> ではタイトルを設定する. また, <code class="docutils literal notranslate"><span class="pre">dpi</span></code> は解像度を設定するパラメータである.</p>
+<p><code class="docutils literal notranslate"><span class="pre">xlabel</span></code> , <code class="docutils literal notranslate"><span class="pre">ylabel</span></code> で <span class="math notranslate nohighlight">\(x\)</span>, <span class="math notranslate nohighlight">\(y\)</span> 軸のラベルを設定する. <code class="docutils literal notranslate"><span class="pre">label</span></code> ではグラフのラベル, <code class="docutils literal notranslate"><span class="pre">title</span></code> ではタイトルを設定する. また, <code class="docutils literal notranslate"><span class="pre">dpi</span></code> は解像度を設定するパラメータである.</p>
 </section>
 <section id="id3">
 <h2>複数グラフの結合<a class="headerlink" href="#id3" title="Link to this heading">#</a></h2>
