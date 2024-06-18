@@ -117,6 +117,8 @@ test_dl = DataLoader((x_test', y_test), batchsize=batch_size)
 
 ## モデル定義
 
+以下のようなモデルを定義する.
+
 **入力層：**
 
 - 入力：$x\in\mathbb{R}^{4}$
@@ -183,6 +185,8 @@ opt = ADAM(lr, (0.9, 0.999))
 
 ## Callbacks
 
+`train!()` 内で呼び出す `callbacks` を作成する.
+
 ```Julia
 function loss_all(data_loader)
     return sum([loss(x, y) for (x, y) in data_loader]) / length(data_loader)
@@ -202,7 +206,11 @@ callbacks = [
 ]
 ```
 
+`loss_all()` は損失の和を返し, `acc()` は正答率を返す.
+
 ## 訓練
+
+モデルの特訓を行う. なお, 特訓に関して, 全データでの特訓を `epochs` 回行う.
 
 ```Julia
 ps = Flux.params(model)
